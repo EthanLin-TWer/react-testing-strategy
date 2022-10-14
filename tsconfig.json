@@ -11,7 +11,7 @@
     "forceConsistentCasingInFileNames": true,
 
     // jsx function and import source
-//    "jsx": "react-jsx",
+    "jsx": "react-jsx",
 
     // strict mode
     "strict": true,
