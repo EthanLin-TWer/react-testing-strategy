@@ -9,7 +9,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "start": "NODE_ENV=development webpack serve -c webpack.dev.config.js --progress --history-api-fallback",
+    "build": "NODE_ENV=production webpack -c webpack.prod.config.js --progress"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -20,16 +22,28 @@
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "commitlint": "^17.1.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.25.0",
     "eslint-config-javascript-the-good-parts": "^1.7.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.4"
+    "resolve-url-loader": "^5.0.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-bundle-analyzer": "^4.6.1",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "react": "^18.2.0",

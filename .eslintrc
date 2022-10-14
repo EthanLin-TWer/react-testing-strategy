@@ -17,6 +17,16 @@
     },
     "ecmaVersion": 2022
   },
-  "extends": ["prettier", "javascript-the-good-parts", "plugin:@typescript-eslint/recommended", "plugin:react/recommended"],
-  "plugins": ["@typescript-eslint", "react", "react-hooks"]
+  "extends": [
+    "prettier",
+    "javascript-the-good-parts",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "no-shadow": "warn"
+  }
 }
