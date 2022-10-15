@@ -16,9 +16,12 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@redux-devtools/extension": "^3.2.3",
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "@types/react-redux": "^7.1.24",
+    "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "commitlint": "^17.1.2",
@@ -35,6 +38,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "redux-logger": "^3.0.6",
     "resolve-url-loader": "^5.0.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
@@ -51,10 +55,13 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.9",
     "@mui/styled-engine-sc": "^5.10.6",
+    "@reduxjs/toolkit": "^1.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
+    "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "redux": "^4.2.0",
     "styled-components": "^5.3.6"
   }
 }
