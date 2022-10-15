@@ -30,6 +30,7 @@ specifiers:
   ts-loader: ^9.4.1
   typescript: ^4.8.4
   webpack: ^5.74.0
+  webpack-assets-manifest: ^5.1.0
   webpack-bundle-analyzer: ^4.6.1
   webpack-cli: ^4.10.0
   webpack-dev-server: ^4.11.1
@@ -67,6 +68,7 @@ devDependencies:
   ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
   typescript: 4.8.4
   webpack: 5.74.0_webpack-cli@4.10.0
+  webpack-assets-manifest: 5.1.0_webpack@5.74.0
   webpack-bundle-analyzer: 4.6.1
   webpack-cli: 4.10.0_h7x7yzdorsncgcilmuyolmyyki
   webpack-dev-server: 4.11.1_5v66e2inugklgvlh4huuavolfq
@@ -1575,6 +1577,11 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
+  /deepmerge/4.2.2:
+    resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /default-gateway/6.0.3:
     resolution: {integrity: sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg==}
     engines: {node: '>= 10'}
@@ -3079,6 +3086,20 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: true
+
+  /lockfile/1.0.4:
+    resolution: {integrity: sha512-cvbTwETRfsFh4nHsL1eGWapU1XFi5Ot9E85sWAwia7Y7EgB7vfqcZhTKZ+l7hCGxSPoushMv5GKhT5PdLv03WA==}
+    dependencies:
+      signal-exit: 3.0.7
+    dev: true
+
+  /lodash.get/4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    dev: true
+
+  /lodash.has/4.5.2:
+    resolution: {integrity: sha512-rnYUdIo6xRCJnQmbVFEwcxF144erlD+M3YcJUVesflU9paQaE8p+fJDcIQrlMYbxoANFL+AB9hZrzSBBk5PL+g==}
     dev: true
 
   /lodash.merge/4.6.2:
@@ -4735,6 +4756,22 @@ packages:
     resolution: {integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==}
     dependencies:
       minimalistic-assert: 1.0.1
+    dev: true
+
+  /webpack-assets-manifest/5.1.0_webpack@5.74.0:
+    resolution: {integrity: sha512-kPuTMEjBrqZQVJ5M6yXNBCEdFbQQn7p+loNXt8NOeDFaAbsNFWqqwR0YL1mfG5LbwhK5FLXWXpuK3GuIIZ46rg==}
+    engines: {node: '>=10.13.0'}
+    peerDependencies:
+      webpack: ^5.2.0
+    dependencies:
+      chalk: 4.1.2
+      deepmerge: 4.2.2
+      lockfile: 1.0.4
+      lodash.get: 4.4.2
+      lodash.has: 4.5.2
+      schema-utils: 3.1.1
+      tapable: 2.2.1
+      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /webpack-bundle-analyzer/4.6.1:

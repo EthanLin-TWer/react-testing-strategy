@@ -44,15 +44,11 @@ const plugins = [
       },
     ],
   }),
-]
-
-const buildEnv = process.env.NODE_ENV === 'production' ? 'production' : 'development'
-plugins.push(
   new Dotenv({
-    path: `./.env.${buildEnv}`,
+    path: `./.env.${process.env.NODE_ENV === 'production' ? 'production' : 'development'}`,
     systemvars: true,
-  })
-)
+  }),
+]
 
 const devServer = {
   compress: true,
@@ -74,7 +70,6 @@ const devServer = {
 }
 
 const config = {
-  mode: 'development',
   entry: './src/index.tsx',
   target: ['web'],
   output: {
@@ -90,12 +85,9 @@ const config = {
       '.mjs': ['.mjs', '.mts'],
     },
   },
-  performance: {
-    hints: 'warning',
-    maxAssetSize: 512000,
-    maxEntrypointSize: 512000,
+  module: {
+    rules,
   },
-  module: { rules },
   plugins,
   devServer,
 }
