@@ -31,7 +31,11 @@
 
     // misc
     "skipLibCheck": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+
+    "paths": {
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+    }
   },
   "typeAcquisition": {
     "include": ["jest"]

@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
 const rules = [
-  { test: /\.(scss|sass|css)$/i, use: ['style-loader', 'css-loader', 'resolve-url-loader'] },
+  { test: /\.(scss|sass|css)$/i, use: ['style-loader', 'css-loader'] },
   {
     test: /\.(png|svg|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
@@ -80,6 +80,9 @@ const config = {
     publicPath: '/',
   },
   resolve: {
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc',
+    },
     extensions: ['*', '.js', '.ts', '.tsx'],
     extensionAlias: {
       '.mjs': ['.mjs', '.mts'],
