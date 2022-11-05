@@ -32,11 +32,10 @@ const getMiddlewares = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => {
   return getDefaultMiddleware()
 }
 
-export const configureAppStore = () => {
-  return configureStore({
+export const configureAppStore = () =>
+  configureStore({
     preloadedState: initialState,
     reducer: reducers,
     middleware: getMiddlewares,
     devTools: process.env.NODE_ENV === Envs.DEVELOPMENT,
   })
-}
