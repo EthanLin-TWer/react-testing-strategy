@@ -1,12 +1,7 @@
-import { Button } from '@mui/material'
-import { styled } from '@mui/material/styles'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { loaded } from '../features/home/reducers'
-
-const DonateButton = styled(Button)`
-  color: indianred;
-`
+import { HomeComponent } from '../features/home/HomeComponent'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -14,10 +9,5 @@ export const Home = () => {
     dispatch(loaded())
   })
 
-  return (
-    <div>
-      <p>welcome to the home page</p>
-      <DonateButton>Donate</DonateButton>
-    </div>
-  )
+  return <HomeComponent />
 }

@@ -1,0 +1,19 @@
+{
+  "setupFilesAfterEnv": ["<rootDir>/test-setup/index.ts"],
+  "testMatch": ["**/__tests__/**/*.+(ts|tsx)", "test/**/?(*.)+spec.+(ts|tsx)"],
+  "moduleNameMapper": {
+    "\\.(gif|ttf|eot|svg|jpg|jpeg|png|ico|webp)$": "<rootDir>/test-setup/__mocks__/file-mock.ts"
+  },
+  "transformIgnorePatterns": ["node_modules", "dist"],
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "collectCoverageFrom": ["src/**/*.{ts,tsx}", "!src/types/*.{ts,tsx}", "!src/images/*.{ts,tsx}", "!src/index.tsx"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 0,
+      "functions": 0,
+      "lines": 0,
+      "statements": 0
+    }
+  }
+}
