@@ -80,9 +80,6 @@ const config = {
     publicPath: '/',
   },
   resolve: {
-    alias: {
-      '@mui/styled-engine': '@mui/styled-engine-sc',
-    },
     extensions: ['*', '.js', '.ts', '.tsx'],
     extensionAlias: {
       '.mjs': ['.mjs', '.mts'],

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Root } from './routes/Root'
+import { Header } from './routes/Header'
 import { Home } from './routes/Home'
 import { About } from './routes/About'
 import { Contact } from './routes/Contact'
@@ -9,7 +9,7 @@ import { Contact } from './routes/Contact'
 export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Root />}>
+      <Route path="/" element={<Header />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
