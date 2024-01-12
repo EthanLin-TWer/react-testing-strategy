@@ -3,6 +3,7 @@ import { onMount } from '../../hooks/onMount'
 
 export const HomeComponent = () => {
   const { setLoaded } = useHomeReducer()
+
   onMount(() => {
     setLoaded()
   })
