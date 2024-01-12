@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 
-import { findFirstChildren, getText } from './_base.tester'
+import { findFirstChildren, parseText } from './_base.tester'
 
 export interface ButtonTester {
   getValue(): string
@@ -14,7 +14,7 @@ export const findButton = (testId: string): ButtonTester => {
   const getElement = () => screen.getByTestId(testId)
 
   // public interfaces
-  const getValue = () => getText(getElement())
+  const getValue = () => parseText(getElement())
 
   const isPresent = () => screen.queryByTestId(testId) !== null
   const isDisabled = () => getElement().getAttribute('disabled') !== null

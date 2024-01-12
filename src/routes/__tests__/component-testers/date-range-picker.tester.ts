@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 
-import { findFirstChildren, getText } from './_base.tester'
+import { findFirstChildren, parseText } from './_base.tester'
 
 export interface DateRangePickerTester {
   getStartLabel(): string
@@ -35,7 +35,7 @@ export const findDateRangePicker = (testId: string): DateRangePickerTester => {
   }
 
   const getDisplayText = () => {
-    const duration = getText(screen.getByTestId(`${testId}-duration`))
+    const duration = parseText(screen.getByTestId(`${testId}-duration`))
     return `${getSelectedStartDate()} ${duration} ${getSelectedEndDate()}`
   }
 

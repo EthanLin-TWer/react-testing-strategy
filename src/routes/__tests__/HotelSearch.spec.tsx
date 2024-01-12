@@ -7,6 +7,7 @@ import {
   getSearchButton,
 } from './business-testers/hotel-search.tester'
 import { SearchDropdownTester } from './component-testers/search-dropdown.tester'
+import { DeliveryDining } from '@mui/icons-material'
 
 describe('search hotels', () => {
   describe('search entry - home page', () => {
@@ -50,9 +51,18 @@ describe('search hotels', () => {
     it('searching fields should have default values so we give user an example, allowing them to navigate to the search result page asap', async () => {
       render(<HotelSearch />)
 
-      expect(getDestinationField().getDisplayText()).toBe('北京')
+      expect(getDestinationField().getValue()).toBe('北京')
       expect(getCheckinPeriodField().getDisplayText()).toBe('2024-01-12 -- 1晚 -- 2024-01-13')
       expect(getOccupancyField().getValue()).toBe(1)
+    })
+
+    describe('editing', () => {
+      it('user should be able to edit searching destination - I am indeed planning a travel to Hangzhou', async () => {
+        render(<HotelSearch />)
+        await getDestinationField().select('杭州')
+
+        expect(getDestinationField().getValue()).toBe('杭州')
+      })
     })
   })
 })

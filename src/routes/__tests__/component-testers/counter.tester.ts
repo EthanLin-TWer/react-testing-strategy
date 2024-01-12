@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 
-import { findFirstChildren, getText } from './_base.tester'
+import { findFirstChildren, parseText } from './_base.tester'
 
 export interface CounterTester {
   getLabel(): string
@@ -13,7 +13,7 @@ export const findCounter = (testId: string): CounterTester => {
   const getInputElement = () => findFirstChildren(getWrapperElement(), 'div')!
 
   // public interfaces
-  const getLabel = () => getText(findFirstChildren(getWrapperElement(), 'label')!)
+  const getLabel = () => parseText(findFirstChildren(getWrapperElement(), 'label')!)
   const getValue = () => {
     const value = findFirstChildren(getInputElement(), 'input')!.getAttribute('value')
     return value ? Number(value) : NaN

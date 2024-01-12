@@ -10,7 +10,11 @@ export const HotelSearchComponent = () => {
 
   return (
     <div>
-      <SearchDropdown label="目的地/酒店名称" options={recommendationCities} testId="destination" />
+      <SearchDropdown
+        label="目的地/酒店名称"
+        options={recommendationCities.map((city) => city.name)}
+        testId="destination"
+      />
 
       <DateRangePicker startLabel="入住时间" endLabel="退房时间" testId="checkin-period" />
       <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
