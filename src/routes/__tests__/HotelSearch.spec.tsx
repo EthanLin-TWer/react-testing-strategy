@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react'
 import { HotelSearch } from '../HotelSearch'
 import {
-  getCheckinDateField,
-  getCheckoutDateField,
+  getCheckinPeriodField,
   getDestinationField,
   getOccupancyField,
   getSearchButton,
@@ -26,11 +25,9 @@ describe('search hotels', () => {
     })
 
     it('should render a search box that supports searching available hotels by destination, check-in period and number of occupancy', async () => {
-      // when ②
-      render(<HotelSearch />) // SearchPage fetches data on its' own
+      render(<HotelSearch />) // SearchPage fetches data on its own
       const destinationField: SearchDropdownTester = getDestinationField()
 
-      // then ③
       expect(destinationField.getLabel()).toBe('目的地/酒店名称')
       expect(await destinationField.getOptions()).toEqual([
         '北京',
@@ -43,8 +40,9 @@ describe('search hotels', () => {
         '武汉',
       ])
 
-      // expect(getCheckinDateField().getLabel()).toBe('入住时间')
-      // expect(getCheckoutDateField().getLabel()).toBe('退房时间')
+      expect(getCheckinPeriodField().getStartLabel()).toBe('入住时间')
+      expect(getCheckinPeriodField().getEndLabel()).toBe('退房时间')
+
       expect(getOccupancyField().getLabel()).toBe('入住人数')
       // expect(getSearchButton().isPresent()).toBeTruthy()
     })

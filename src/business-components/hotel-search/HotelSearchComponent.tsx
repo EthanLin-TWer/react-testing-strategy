@@ -1,9 +1,8 @@
 import React from 'react'
-import { Button, InputAdornment, TextField } from '@mui/material'
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
+import { Button } from '@mui/material'
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
+import { DateRangePicker } from '../../ui-components/DatePicker/DateRangePicker'
 
 export const HotelSearchComponent = () => {
   return (
@@ -23,9 +22,7 @@ export const HotelSearchComponent = () => {
         testId="destination"
       />
 
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DatePicker />
-      </LocalizationProvider>
+      <DateRangePicker startLabel="入住时间" endLabel="退房时间" testId="checkin-period" />
 
       <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
 
