@@ -21,12 +21,11 @@ export const HotelSearchComponent = () => {
         ]}
         testId="destination"
       />
-
       <DateRangePicker startLabel="入住时间" endLabel="退房时间" testId="checkin-period" />
-
       <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
-
-      <Button variant="contained">Search</Button>
+      <Button variant="contained" data-testid="search">
+        Search
+      </Button>
     </div>
   )
 }

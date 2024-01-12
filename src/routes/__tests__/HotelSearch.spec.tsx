@@ -44,7 +44,7 @@ describe('search hotels', () => {
       expect(getCheckinPeriodField().getEndLabel()).toBe('退房时间')
 
       expect(getOccupancyField().getLabel()).toBe('入住人数')
-      // expect(getSearchButton().isPresent()).toBeTruthy()
+      expect(getSearchButton().getValue()).toBe('Search')
     })
   })
 })
