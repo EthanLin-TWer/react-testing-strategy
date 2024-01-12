@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export interface ContactState {
+  loaded: boolean
+}
+
 const { actions, reducer } = createSlice({
-  name: 'about',
-  initialState: {},
+  name: 'contact',
+  initialState: {
+    loaded: false,
+  },
   reducers: {
-    loaded(state, action) {},
+    loaded(state: ContactState, action) {},
   },
 })
 export const { loaded } = actions

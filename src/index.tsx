@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 
 import { Envs } from './constants/envs'
 import { AppRoutes } from './app-routes'
-import { configureAppStore } from './configure-store'
+import { configureAppStore } from './redux'
 
 if (process.env.NODE_ENV === Envs.DEVELOPMENT) {
   // setup mock server

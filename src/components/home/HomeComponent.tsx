@@ -1,13 +1,11 @@
-import { Button } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { useHomeReducer } from '../../hooks/redux/useHomeReducer'
+import { onMount } from '../../hooks/onMount'
 
-const DonateButton = styled(Button)`
-  color: indianred;
-`
+export const HomeComponent = () => {
+  const { setLoaded } = useHomeReducer()
+  onMount(() => {
+    setLoaded()
+  })
 
-export const HomeComponent = () => (
-  <>
-    <p>welcome to the home page</p>
-    <DonateButton>Donate</DonateButton>
-  </>
-)
+  return <p>welcome to the home page</p>
+}

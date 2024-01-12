@@ -1,25 +1,17 @@
-import homeReducer from './components/home/reducers'
-import aboutReducer from './components/about/reducers'
-import contactReducer from './components/contact/reducers'
 import { configureStore } from '@reduxjs/toolkit'
-import { Envs } from './constants/envs'
 import { CurriedGetDefaultMiddleware } from '@reduxjs/toolkit/dist/getDefaultMiddleware'
 
-export interface StoreState {
-  about: Record<string, never>
-  home: Record<string, never>
-  contact: Record<string, never>
-}
+import homeReducer, { HomeState } from './home-reducers'
+import contactReducer, { ContactState } from './contact-reducers'
+import { Envs } from '../constants/envs'
 
-const initialState = {
-  about: {},
-  home: {},
-  contact: {},
+export interface StoreState {
+  home: HomeState
+  contact: ContactState
 }
 
 const reducers = {
   home: homeReducer,
-  about: aboutReducer,
   contact: contactReducer,
 }
 
@@ -34,7 +26,7 @@ const getMiddlewares = (getDefaultMiddleware: CurriedGetDefaultMiddleware) => {
 
 export const configureAppStore = () =>
   configureStore({
-    preloadedState: initialState,
+    preloadedState: {}, // this can be initialized from each reducer
     reducer: reducers,
     middleware: getMiddlewares,
     devTools: process.env.NODE_ENV === Envs.DEVELOPMENT,
