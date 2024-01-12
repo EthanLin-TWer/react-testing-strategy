@@ -46,5 +46,13 @@ describe('search hotels', () => {
       expect(getOccupancyField().getLabel()).toBe('入住人数')
       expect(getSearchButton().getValue()).toBe('Search')
     })
+
+    it('searching fields should have default values so we give user an example, allowing them to navigate to the search result page asap', async () => {
+      render(<HotelSearch />)
+
+      expect(getDestinationField().getDisplayText()).toBe('北京')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('2024-01-12 -- 1晚 -- 2024-01-13')
+      expect(getOccupancyField().getValue()).toBe(1)
+    })
   })
 })

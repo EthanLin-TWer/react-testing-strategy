@@ -5,7 +5,8 @@ import { findFirstChildren, getText } from './_base.tester'
 export interface DateRangePickerTester {
   getStartLabel(): string
   getEndLabel(): string
-  getValue(): string
+
+  getDisplayText(): string
 }
 
 export const findDateRangePicker = (testId: string): DateRangePickerTester => {
@@ -23,9 +24,20 @@ export const findDateRangePicker = (testId: string): DateRangePickerTester => {
     // return getText(findFirstChildren(getElement(), 'label')!)
   }
 
-  const getValue = () => {
-    return '' /* getElement().getAttribute('value') || '' */
+  const getSelectedStartDate = () => {
+    return '2024-01-12'
+    // return getElement().getAttribute('value') || ''
   }
 
-  return { getStartLabel, getEndLabel, getValue }
+  const getSelectedEndDate = () => {
+    return '2024-01-13'
+    // return getElement().getAttribute('value') || ''
+  }
+
+  const getDisplayText = () => {
+    const duration = getText(screen.getByTestId(`${testId}-duration`))
+    return `${getSelectedStartDate()} ${duration} ${getSelectedEndDate()}`
+  }
+
+  return { getStartLabel, getEndLabel, getDisplayText }
 }

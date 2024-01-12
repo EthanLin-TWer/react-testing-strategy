@@ -23,10 +23,8 @@ export const findSearchDropdown = (testId: string): SearchDropdownTester => {
 
   // public interfaces
   const getLabel = () => screen.getByTestId(`${testId}-label`).textContent!
-  const getValue = (): string => screen.getByTestId(`${testId}-input`).getAttribute('value')!
-  const getDisplayText = () => {
-    return ''
-  }
+  const getValue = () => screen.getByTestId(`${testId}-input`).getAttribute('value')!
+  const getDisplayText = () => getText(getDropdownWrapperElement())
   const getOptions = async (): Promise<string[]> => {
     await clickDropdown() // to open the dropdown so the options/dropdown would appear in DOM
     const optionElements = screen.getAllByRole('option')

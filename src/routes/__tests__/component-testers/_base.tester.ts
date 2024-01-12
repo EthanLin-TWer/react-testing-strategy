@@ -1,4 +1,4 @@
-type Node = 'div' | 'p' | 'label'
+type Node = 'div' | 'p' | 'label' | 'input'
 
 export const getText = (element: Element): string => {
   return element.textContent || ''

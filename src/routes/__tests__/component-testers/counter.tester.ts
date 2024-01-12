@@ -4,17 +4,19 @@ import { findFirstChildren, getText } from './_base.tester'
 
 export interface CounterTester {
   getLabel(): string
-  getValue(): string
+  getValue(): number
 }
 
 export const findCounter = (testId: string): CounterTester => {
   // implementation details
-  const getElement = () => screen.getByTestId(testId)
+  const getWrapperElement = () => screen.getByTestId(testId)
+  const getInputElement = () => findFirstChildren(getWrapperElement(), 'div')!
 
   // public interfaces
-  const getLabel = () => getText(findFirstChildren(getElement(), 'label')!)
+  const getLabel = () => getText(findFirstChildren(getWrapperElement(), 'label')!)
   const getValue = () => {
-    return '' /* getElement().getAttribute('value') || '' */
+    const value = findFirstChildren(getInputElement(), 'input')!.getAttribute('value')
+    return value ? Number(value) : NaN
   }
 
   return { getLabel, getValue }
