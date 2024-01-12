@@ -37,8 +37,8 @@ export const Counter = ({ testId, label, onChange, defaultValue = 0, min = 0, ma
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <AddCircleOutlineIcon onClick={increment} />
-            <RemoveCircleOutlineIcon onClick={decrement} />
+            <AddCircleOutlineIcon onClick={increment} data-testid={`${testId}-increment`} />
+            <RemoveCircleOutlineIcon onClick={decrement} data-testid={`${testId}-decrement`} />
           </InputAdornment>
         ),
       }}

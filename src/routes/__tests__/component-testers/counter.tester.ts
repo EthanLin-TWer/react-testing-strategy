@@ -1,10 +1,14 @@
 import { screen } from '@testing-library/react'
 
-import { findFirstChildren, parseText } from './_base.tester'
+import { findFirstChildren, parseText, parseValue } from './_base.tester'
+import userEvent from '@testing-library/user-event'
 
 export interface CounterTester {
   getLabel(): string
   getValue(): number
+
+  clickToIncrement(): Promise<void>
+  clickToDecrement(): Promise<void>
 }
 
 export const findCounter = (testId: string): CounterTester => {
@@ -15,9 +19,15 @@ export const findCounter = (testId: string): CounterTester => {
   // public interfaces
   const getLabel = () => parseText(findFirstChildren(getWrapperElement(), 'label')!)
   const getValue = () => {
-    const value = findFirstChildren(getInputElement(), 'input')!.getAttribute('value')
+    const value = parseValue(findFirstChildren(getInputElement(), 'input')!)
     return value ? Number(value) : NaN
   }
+  const clickToIncrement = async () => {
+    await userEvent.click(screen.getByTestId(`${testId}-increment`))
+  }
+  const clickToDecrement = async () => {
+    await userEvent.click(screen.getByTestId(`${testId}-decrement`))
+  }
 
-  return { getLabel, getValue }
+  return { getLabel, getValue, clickToIncrement, clickToDecrement }
 }

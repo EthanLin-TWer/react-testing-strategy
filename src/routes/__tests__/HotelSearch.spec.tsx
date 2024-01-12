@@ -63,6 +63,26 @@ describe('search hotels', () => {
 
         expect(getDestinationField().getValue()).toBe('杭州')
       })
+
+      it('user should be able to increase no. of occupancies', async () => {
+        render(<HotelSearch />)
+
+        await getOccupancyField().clickToIncrement()
+        expect(getOccupancyField().getValue()).toBe(2)
+
+        await getOccupancyField().clickToIncrement()
+        expect(getOccupancyField().getValue()).toBe(3)
+      })
+
+      it('user should be able to decrease no. of occupancies', async () => {
+        render(<HotelSearch />)
+
+        await getOccupancyField().clickToIncrement()
+        expect(getOccupancyField().getValue()).toBe(2)
+
+        await getOccupancyField().clickToDecrement()
+        expect(getOccupancyField().getValue()).toBe(1)
+      })
     })
   })
 })
