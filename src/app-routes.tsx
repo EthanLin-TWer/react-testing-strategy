@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Header } from './routes/Header'
-import { Home } from './routes/Home'
+import { HotelSearch } from './routes/HotelSearch'
 import { About } from './routes/About'
 import { Contact } from './routes/Contact'
 
@@ -10,7 +10,7 @@ export const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Header />}>
-        <Route index element={<Home />} />
+        <Route index element={<HotelSearch />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
       </Route>

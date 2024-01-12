@@ -1,6 +1,6 @@
 {
   "setupFilesAfterEnv": ["<rootDir>/test-setup/index.ts"],
-  "testMatch": ["**/__tests__/**/*.+(ts|tsx)", "test/**/?(*.)+spec.+(ts|tsx)"],
+  "testMatch": ["**/__tests__/**/*.+(spec).(ts|tsx)", "test/**/?(*.)+spec.+(ts|tsx)"],
   "moduleNameMapper": {
     "\\.(gif|ttf|eot|svg|jpg|jpeg|png|ico|webp)$": "<rootDir>/test-setup/__mocks__/file-mock.ts"
   },

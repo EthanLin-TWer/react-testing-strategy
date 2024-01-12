@@ -4,7 +4,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
 import { Outlet } from 'react-router-dom'
-import { HeaderComponent } from '../components/shared/header/HeaderComponent'
+import { HeaderComponent } from '../business-components/shared/header/HeaderComponent'
 
 export const Header = () => (
   <>
