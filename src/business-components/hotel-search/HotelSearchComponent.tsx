@@ -2,9 +2,8 @@ import React from 'react'
 import { Button, InputAdornment, TextField } from '@mui/material'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
+import { Counter } from '../../ui-components/Counter/Counter'
 
 export const HotelSearchComponent = () => {
   return (
@@ -28,17 +27,8 @@ export const HotelSearchComponent = () => {
         <DatePicker />
       </LocalizationProvider>
 
-      <TextField
-        label="入住人数"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <AddCircleOutlineIcon />
-              <RemoveCircleOutlineIcon />
-            </InputAdornment>
-          ),
-        }}
-      />
+      <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
+
       <Button variant="contained">Search</Button>
     </div>
   )

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import { findFirstChildren } from './_base.tester'
+import { findFirstChildren, getText } from './_base.tester'
 
 export interface SearchDropdownTester {
   getLabel(): string
@@ -30,7 +30,7 @@ export const findSearchDropdown = (testId: string): SearchDropdownTester => {
   const getOptions = async (): Promise<string[]> => {
     await clickDropdown() // to open the dropdown so the options/dropdown would appear in DOM
     const optionElements = screen.getAllByRole('option')
-    const options = optionElements.map((option) => option.textContent || '')
+    const options = optionElements.map(getText)
     await clickDropdown() // to close the dropdown and resume dropdown component to original state
     return options
   }

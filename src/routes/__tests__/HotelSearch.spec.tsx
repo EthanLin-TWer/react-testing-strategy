@@ -45,7 +45,7 @@ describe('search hotels', () => {
 
       // expect(getCheckinDateField().getLabel()).toBe('入住时间')
       // expect(getCheckoutDateField().getLabel()).toBe('退房时间')
-      // expect(getOccupancyField().getLabel()).toBe('住客人数')
+      expect(getOccupancyField().getLabel()).toBe('入住人数')
       // expect(getSearchButton().isPresent()).toBeTruthy()
     })
   })
