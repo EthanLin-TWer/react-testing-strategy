@@ -21,10 +21,15 @@ export const HotelSearchComponent = () => {
 
   const defaultCheckinDay = new Date()
   const defaultCheckoutDay = addDays(defaultCheckinDay, 1)
-  const [[checkinDate, checkoutDate], setCheckinPeriod] = useState([defaultCheckinDay, defaultCheckoutDay])
+  const [[checkinDate, checkoutDate], setCheckinPeriod] = useState<[Date, Date]>([
+    defaultCheckinDay,
+    defaultCheckoutDay,
+  ])
   const onCheckinPeriodChange = (startDate: Date, endDate: Date) => {
     setCheckinPeriod([startDate, endDate])
   }
+
+  const [noOfOccupancies, setNoOfOccupancies] = useState<number>(1)
 
   return (
     <div>
@@ -44,7 +49,8 @@ export const HotelSearchComponent = () => {
         onChange={onCheckinPeriodChange}
         testId="checkin-period"
       />
-      <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
+
+      <Counter label="入住人数" min={1} defaultValue={1} onChange={setNoOfOccupancies} testId="occupancy" />
       <Button variant="contained" data-testid="search">
         Search
       </Button>
