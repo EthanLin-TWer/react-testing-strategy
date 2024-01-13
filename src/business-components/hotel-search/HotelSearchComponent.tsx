@@ -9,15 +9,22 @@ import { CityDTO } from '../../hooks/api/dto/city.dto'
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
 
-  const [city, setCity] = useState()
-  const onDestinationChanged = () => {}
+  const defaultedAsChinaCapital = recommendationCities.findByName('北京')!
+  const [city, setCity] = useState(defaultedAsChinaCapital)
+  const onDestinationChanged = (cityName: string) => {
+    const cityFound = recommendationCities.findByName(cityName)
+    if (cityFound) {
+      setCity(cityFound!)
+    }
+  }
 
   return (
     <div>
       <SearchDropdown
         label="目的地/酒店名称"
         options={recommendationCities.getNames()}
-        defaultValue={recommendationCities.findByName('北京')!.name}
+        defaultValue={defaultedAsChinaCapital.name}
+        onChange={onDestinationChanged}
         testId="destination"
       />
 

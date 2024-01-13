@@ -20,7 +20,7 @@ const toCityDTO = (city: CityResponse): CityDTO => {
 export const toCitiesDTO = (cities: CityResponse[]): CitiesDTO => {
   const data: CityDTO[] = cities.map(toCityDTO)
   const getNames = () => cities.map((city) => city.name)
-  const findByName = (name: string) => cities.find((city) => city.name === name)
+  const findByName = (name: string) => data.find((city) => city.name === name)
 
   return { data, getNames, findByName }
 }
