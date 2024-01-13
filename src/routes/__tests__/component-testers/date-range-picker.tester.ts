@@ -1,37 +1,38 @@
 import { screen } from '@testing-library/react'
 
-import { findFirstChildren, parseText } from './_base.tester'
+import { findFirstChildren, findSecondChildren, parseText, parseValue } from './_base.tester'
 
 export interface DateRangePickerTester {
   getStartLabel(): string
   getEndLabel(): string
 
   getDisplayText(): string
+
+  selectStartDate(date: string): Promise<void>
+  selectEndDate(date: string): Promise<void>
 }
 
 export const findDateRangePicker = (testId: string): DateRangePickerTester => {
   // implementation details
   const getElement = () => screen.getByTestId(testId)
+  const getStartDatePicker = () => findFirstChildren(getElement(), 'div')!
+  const getEndDatePicker = () => findSecondChildren(getElement(), 'div')!
 
   // public interfaces
   const getStartLabel = () => {
-    return '入住时间'
-    // return getText(findFirstChildren(getElement(), 'label')!)
+    return parseText(findFirstChildren(getStartDatePicker(), 'label')!)
   }
 
   const getEndLabel = () => {
-    return '退房时间'
-    // return getText(findFirstChildren(getElement(), 'label')!)
+    return parseText(findFirstChildren(getEndDatePicker(), 'label')!)
   }
 
   const getSelectedStartDate = () => {
-    return '2024-01-12'
-    // return getElement().getAttribute('value') || ''
+    return parseValue(findFirstChildren(findFirstChildren(getStartDatePicker(), 'div')!, 'input'))
   }
 
   const getSelectedEndDate = () => {
-    return '2024-01-13'
-    // return getElement().getAttribute('value') || ''
+    return parseValue(findFirstChildren(findFirstChildren(getEndDatePicker(), 'div')!, 'input'))
   }
 
   const getDisplayText = () => {
@@ -39,5 +40,8 @@ export const findDateRangePicker = (testId: string): DateRangePickerTester => {
     return `${getSelectedStartDate()} ${duration} ${getSelectedEndDate()}`
   }
 
-  return { getStartLabel, getEndLabel, getDisplayText }
+  const selectStartDate = async () => {}
+  const selectEndDate = async () => {}
+
+  return { getStartLabel, getEndLabel, getDisplayText, selectStartDate, selectEndDate }
 }

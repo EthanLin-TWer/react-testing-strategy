@@ -52,7 +52,7 @@ describe('search hotels', () => {
       render(<HotelSearch />)
 
       expect(getDestinationField().getValue()).toBe('北京')
-      expect(getCheckinPeriodField().getDisplayText()).toBe('2024-01-12 -- 1晚 -- 2024-01-13')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('01/13/2024 -- 1晚 -- 01/14/2024')
       expect(getOccupancyField().getValue()).toBe(1)
     })
 
