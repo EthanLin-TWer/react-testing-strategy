@@ -2,20 +2,31 @@ import { PropsWithChildren, ReactElement } from 'react'
 import { render } from '@testing-library/react'
 import { Provider as ReduxProvider } from 'react-redux'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { configureAppStore } from '../src/redux'
 import { queryClient } from '../src/hooks/api/query-client'
+import { Header } from '../src/routes/Header'
 
-function Wrapper<T = unknown>({ children }: PropsWithChildren<T>) {
-  return (
-    <ReduxProvider store={configureAppStore()}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </ReduxProvider>
-  )
+const registerUnderPath = (path: string) => {
+  return function Wrapper<T = unknown>({ children }: PropsWithChildren<T>) {
+    return (
+      <ReduxProvider store={configureAppStore()}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Header />}>
+                <Route path={path} element={children} />
+                <Route path="hotels/list" element={<div />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ReduxProvider>
+    )
+  }
 }
 
-export const renderComponent = (componentUnderTest: ReactElement) => {
-  render(componentUnderTest, {
-    wrapper: Wrapper,
-  })
+export const renderRouteComponent = (componentUnderTest: ReactElement, path = '') => {
+  render(componentUnderTest, { wrapper: registerUnderPath(path) })
 }

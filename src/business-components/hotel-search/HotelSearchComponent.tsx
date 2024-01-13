@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { addDays, format } from 'date-fns'
 
@@ -9,6 +10,7 @@ import { useRecommendationCities, useSearchHotels } from '../../hooks/api/useHot
 
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
+  const navigate = useNavigate()
 
   const defaultedAsChinaCapital = recommendationCities.findByName('北京')!
   const [city, setCity] = useState(defaultedAsChinaCapital)
@@ -31,12 +33,14 @@ export const HotelSearchComponent = () => {
 
   const [noOfOccupancies, setNoOfOccupancies] = useState<number>(1)
 
-  const { hotels, triggerSearchHotel } = useSearchHotels({
-    city: city.id,
-    checkinDate: format(checkinDate, 'yyyy-MM-dd'),
-    checkoutDate: format(checkoutDate, 'yyyy-MM-dd'),
-    noOfOccupancies,
-  })
+  const onSearch = () => {
+    const checkinDateString: string = format(checkinDate, 'yyyy-MM-dd')
+    const checkoutDateString = format(checkoutDate, 'yyyy-MM-dd')
+
+    navigate(
+      `/hotels/list?city=${city.id}&checkinDate=${checkinDateString}&checkoutDate=${checkoutDateString}&noOfOccupancies=${noOfOccupancies}`
+    )
+  }
 
   return (
     <div>
@@ -59,7 +63,7 @@ export const HotelSearchComponent = () => {
 
       <Counter label="入住人数" min={1} defaultValue={1} onChange={setNoOfOccupancies} testId="occupancy" />
 
-      <Button variant="contained" onClick={triggerSearchHotel} data-testid="search">
+      <Button variant="contained" onClick={onSearch} data-testid="search">
         Search
       </Button>
     </div>
