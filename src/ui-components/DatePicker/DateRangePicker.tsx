@@ -28,6 +28,7 @@ export const DateRangePicker = ({ testId, startLabel, endLabel }: DateRangePicke
           label={startLabel}
           value={startDate}
           disablePast
+          format="yyyy/MM/dd"
           onChange={onStartDateChange}
           data-testid={`${testId}-start`}
         />
@@ -36,6 +37,7 @@ export const DateRangePicker = ({ testId, startLabel, endLabel }: DateRangePicke
           label={endLabel}
           value={endDate}
           minDate={startDate}
+          format="yyyy/MM/dd"
           onChange={onEndDateChange}
           data-testid={`${testId}-end`}
         />
