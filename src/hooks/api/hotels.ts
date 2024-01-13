@@ -1,8 +1,8 @@
-import { CityDTO, toCityDTO } from './dto/city.dto'
+import { CitiesDTO, toCitiesDTO } from './dto/city.dto'
 
-export const useHotels = () => {}
+export const useSearchHotels = () => {}
 
-export const useRecommendationCities = (): CityDTO[] => {
+export const useRecommendationCities = (): CitiesDTO => {
   const hardcodedCityForNow = [
     { id: 'BJ', name: '北京' },
     { id: 'SH', name: '上海' },
@@ -14,5 +14,5 @@ export const useRecommendationCities = (): CityDTO[] => {
     { id: 'WH', name: '武汉' },
   ]
 
-  return hardcodedCityForNow.map(toCityDTO)
+  return toCitiesDTO(hardcodedCityForNow)
 }

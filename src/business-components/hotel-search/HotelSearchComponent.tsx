@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@mui/material'
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
 import { DateRangePicker } from '../../ui-components/DatePicker/DateRangePicker'
 import { useRecommendationCities } from '../../hooks/api/hotels'
+import { CityDTO } from '../../hooks/api/dto/city.dto'
 
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
+
+  const [city, setCity] = useState()
+  const onDestinationChanged = () => {}
 
   return (
     <div>
       <SearchDropdown
         label="目的地/酒店名称"
-        options={recommendationCities.map((city) => city.name)}
+        options={recommendationCities.getNames()}
+        defaultValue={recommendationCities.findByName('北京')!.name}
         testId="destination"
       />
 
