@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material'
+import { addDays } from 'date-fns'
+
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
 import { DateRangePicker } from '../../ui-components/DatePicker/DateRangePicker'
 import { useRecommendationCities } from '../../hooks/api/hotels'
-import { CityDTO } from '../../hooks/api/dto/city.dto'
 
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
@@ -18,6 +19,13 @@ export const HotelSearchComponent = () => {
     }
   }
 
+  const defaultCheckinDay = new Date()
+  const defaultCheckoutDay = addDays(defaultCheckinDay, 1)
+  const [[checkinDate, checkoutDate], setCheckinPeriod] = useState([defaultCheckinDay, defaultCheckoutDay])
+  const onCheckinPeriodChange = (startDate: Date, endDate: Date) => {
+    setCheckinPeriod([startDate, endDate])
+  }
+
   return (
     <div>
       <SearchDropdown
@@ -28,7 +36,14 @@ export const HotelSearchComponent = () => {
         testId="destination"
       />
 
-      <DateRangePicker startLabel="入住时间" endLabel="退房时间" testId="checkin-period" />
+      <DateRangePicker
+        startLabel="入住时间"
+        endLabel="退房时间"
+        defaultStartDate={defaultCheckinDay}
+        defaultEndDate={defaultCheckoutDay}
+        onChange={onCheckinPeriodChange}
+        testId="checkin-period"
+      />
       <Counter label="入住人数" min={1} defaultValue={1} testId="occupancy" />
       <Button variant="contained" data-testid="search">
         Search
