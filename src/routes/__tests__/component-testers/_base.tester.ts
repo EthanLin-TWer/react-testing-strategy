@@ -1,4 +1,4 @@
-type Node = 'div' | 'p' | 'label' | 'input'
+type Node = 'div' | 'p' | 'label' | 'input' | 'button'
 
 const _findMatchedNode = (element: Element, nodeName: Node) => {
   return Array.from(element.children).filter((e) => {

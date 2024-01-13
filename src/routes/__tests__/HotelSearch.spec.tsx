@@ -83,6 +83,15 @@ describe('search hotels', () => {
         await getOccupancyField().clickToDecrement()
         expect(getOccupancyField().getValue()).toBe(1)
       })
+
+      it('user should be able to extend reservation time and see how many days of money they need to pay', async () => {
+        render(<HotelSearch />)
+
+        await getCheckinPeriodField().selectStartDate('2024-01-14')
+        await getCheckinPeriodField().selectEndDate('2024-01-19')
+
+        expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/14 -- 5晚 -- 2024/01/19')
+      })
     })
   })
 })

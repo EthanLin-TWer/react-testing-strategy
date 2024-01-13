@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react'
 
 import { findFirstChildren, findSecondChildren, parseText, parseValue } from './_base.tester'
+import userEvent from '@testing-library/user-event'
+import { getDate, getMonth, getYear } from 'date-fns'
 
 export interface DateRangePickerTester {
   getStartLabel(): string
@@ -17,6 +19,32 @@ export const findDateRangePicker = (testId: string): DateRangePickerTester => {
   const getElement = () => screen.getByTestId(testId)
   const getStartDatePicker = () => findFirstChildren(getElement(), 'div')!
   const getEndDatePicker = () => findSecondChildren(getElement(), 'div')!
+
+  const selectDate = async (picker: Element, date: string) => {
+    /* these selectors should go into a specific picker tester */
+    const findCalendarIconElement = () =>
+      findFirstChildren(findFirstChildren(findFirstChildren(picker, 'div')!, 'div')!, 'button')!
+
+    const getSelectedDate = () => parseValue(findFirstChildren(findFirstChildren(picker, 'div')!, 'input'))
+
+    // click the calendar icon
+    await userEvent.click(findCalendarIconElement())
+
+    // find target date and select
+    const day = getDate(date).toString()
+    const month = getMonth(date).toString()
+    const year = getYear(date).toString()
+
+    if (year !== getYear(getSelectedDate()).toString()) {
+      // select to the same year first
+    }
+
+    if (month !== getMonth(getSelectedDate()).toString()) {
+      // select to the same month first
+    }
+
+    await userEvent.click(screen.getByRole('gridcell', { name: day }))
+  }
 
   // public interfaces
   const getStartLabel = () => {
@@ -40,8 +68,13 @@ export const findDateRangePicker = (testId: string): DateRangePickerTester => {
     return `${getSelectedStartDate()} ${duration} ${getSelectedEndDate()}`
   }
 
-  const selectStartDate = async () => {}
-  const selectEndDate = async () => {}
+  const selectStartDate = async (date: string) => {
+    await selectDate(getStartDatePicker(), date)
+  }
+
+  const selectEndDate = async (date: string) => {
+    await selectDate(getEndDatePicker(), date)
+  }
 
   return { getStartLabel, getEndLabel, getDisplayText, selectStartDate, selectEndDate }
 }
