@@ -11,19 +11,25 @@ import { AppRoutes } from './app-routes'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from './hooks/api/query-client'
 
-if (process.env.NODE_ENV === Envs.DEVELOPMENT) {
-  // setup mock server
-  // setup other dev environment stuffs
+const enablingMocking = async (): Promise<unknown> => {
+  if (process.env.NODE_ENV !== Envs.DEVELOPMENT) {
+    return
+  }
+
+  const { worker } = await import('./mocks')
+  return worker.start({ onUnhandledRequest: 'bypass' })
 }
 
 const store = configureAppStore()
 const root: Root = createRoot(document.getElementById('root') as HTMLElement)
-root.render(
-  <React.StrictMode>
-    <ReduxProvider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <AppRoutes />
-      </QueryClientProvider>
-    </ReduxProvider>
-  </React.StrictMode>
-)
+enablingMocking().then(() => {
+  root.render(
+    <React.StrictMode>
+      <ReduxProvider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <AppRoutes />
+        </QueryClientProvider>
+      </ReduxProvider>
+    </React.StrictMode>
+  )
+})

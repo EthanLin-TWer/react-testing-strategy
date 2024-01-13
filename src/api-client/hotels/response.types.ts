@@ -4,6 +4,7 @@ enum Facility {
 }
 
 interface RoomType {
+  id: string
   classification: string
   facilities: Facility[]
   areas: number
@@ -12,10 +13,17 @@ interface RoomType {
 }
 
 export interface HotelResponse {
+  id: string
   leastAvailablePrice: number
-  roomTypes: RoomType[]
+  roomTypes?: RoomType[]
   userRating: number
   noOfUserRatings: number
   starRating: StarRating
   imgSrc: string
+}
+
+export interface PagedResult<T> {
+  totalPages: number
+  totalCounts: number
+  data: T
 }

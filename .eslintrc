@@ -29,6 +29,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/ban-ts-comment": "warn",
-    "no-shadow": "warn"
+    "consistent-return": "warn", // complaining in src/index.tsx#20
+    "no-shadow": "warn",
   }
 }
