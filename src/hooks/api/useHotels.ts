@@ -6,15 +6,12 @@ import { HotelResponse } from '../../api-client/hotels/response.types'
 import { CitiesDTO, toCitiesDTO } from './dto/city.dto'
 
 export const useSearchHotels = (criteria: SearchCriteria) => {
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery<HotelResponse>({
+  const query = useQuery<HotelResponse>({
     queryKey: ['hotels'],
     queryFn: () => getHotels(criteria),
     enabled: false,
   })
+  const { data = [], isLoading, refetch } = query
 
   return {
     hotels: data,

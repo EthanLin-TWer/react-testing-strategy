@@ -1,3 +1,4 @@
+import mockAxios from 'jest-mock-axios'
 import { renderComponent } from '../../../test-setup/render'
 import { HotelSearch } from '../HotelSearch'
 import {
@@ -90,6 +91,22 @@ describe('search hotels', () => {
         await getCheckinPeriodField().selectEndDate('2024-01-19')
 
         expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/14 -- 5晚 -- 2024/01/19')
+      })
+    })
+
+    describe('searching', () => {
+      it('should call search endpoint with correct parameters: city id, check dates in yyyy-MM-dd, and no. of occupancies', async () => {
+        renderComponent(<HotelSearch />)
+
+        await getDestinationField().select('杭州')
+        await getCheckinPeriodField().selectStartDate('2024-01-20')
+        await getCheckinPeriodField().selectEndDate('2024-01-28')
+        await getOccupancyField().clickToIncrement()
+        await getSearchButton().click()
+
+        expect(mockAxios.get).toHaveBeenCalledWith('/hotels', {
+          params: { checkinDate: '2024-01-20', checkoutDate: '2024-01-28', city: 'HZ', noOfOccupancies: 2 },
+        })
       })
     })
   })
