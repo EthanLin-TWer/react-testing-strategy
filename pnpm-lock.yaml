@@ -12,6 +12,7 @@ specifiers:
   '@mui/x-date-pickers': ^6.19.0
   '@redux-devtools/extension': ^3.2.3
   '@reduxjs/toolkit': ^1.8.6
+  '@tanstack/react-query': ^5.17.10
   '@testing-library/dom': ^8.19.0
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
@@ -72,6 +73,7 @@ dependencies:
   '@mui/system': 5.10.9_omnfxrm5in22zog3yle77k2jsa
   '@mui/x-date-pickers': 6.19.0_ypswxpguumrmjd4dtaf2wv66zq
   '@reduxjs/toolkit': 1.8.6_kuo2ie247izvzll3jejufdtq3q
+  '@tanstack/react-query': 5.17.10_react@18.2.0
   axios: 1.4.0
   date-fns: 3.2.0
   react: 18.2.0
@@ -1542,6 +1544,19 @@ packages:
     dependencies:
       '@sinonjs/commons': 1.8.4
     dev: true
+
+  /@tanstack/query-core/5.17.10:
+    resolution: {integrity: sha512-bJ2oQUDBftvHcEkLS3gyzzShSeZpJyzNNRu8oHK13iNdsofyaDXtNO/c1Zy/PZYVX+PhqOXwoT42gMiEMRSSfQ==}
+    dev: false
+
+  /@tanstack/react-query/5.17.10_react@18.2.0:
+    resolution: {integrity: sha512-TNmJN7LkSLzmv01Jen3JbcvhXZyRhc/ETJNjssmmlyMB8IoNvicfgvDRX2gX3q1FTONq+mfsmWintwI+ejmEUw==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.17.10
+      react: 18.2.0
+    dev: false
 
   /@testing-library/dom/8.19.0:
     resolution: {integrity: sha512-6YWYPPpxG3e/xOo6HIWwB/58HukkwIVTOaZ0VwdMVjhRUX/01E4FtQbck9GazOOj7MXHc5RBzMrU86iBJHbI+A==}

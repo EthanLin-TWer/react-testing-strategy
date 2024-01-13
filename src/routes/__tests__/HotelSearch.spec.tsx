@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { renderComponent } from '../../../test-setup/render'
 import { HotelSearch } from '../HotelSearch'
 import {
   getCheckinPeriodField,
@@ -7,7 +7,6 @@ import {
   getSearchButton,
 } from './business-testers/hotel-search.tester'
 import { SearchDropdownTester } from './component-testers/search-dropdown.tester'
-import { DeliveryDining } from '@mui/icons-material'
 
 describe('search hotels', () => {
   describe('search entry - home page', () => {
@@ -26,7 +25,7 @@ describe('search hotels', () => {
     })
 
     it('should render a search box that supports searching available hotels by destination, check-in period and number of occupancy', async () => {
-      render(<HotelSearch />) // SearchPage fetches data on its own
+      renderComponent(<HotelSearch />) // SearchPage fetches data on its own
       const destinationField: SearchDropdownTester = getDestinationField()
 
       expect(destinationField.getLabel()).toBe('目的地/酒店名称')
@@ -49,7 +48,7 @@ describe('search hotels', () => {
     })
 
     it('searching fields should have default values so we give user an example, allowing them to navigate to the search result page asap', async () => {
-      render(<HotelSearch />)
+      renderComponent(<HotelSearch />)
 
       expect(getDestinationField().getValue()).toBe('北京')
       expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/13 -- 1晚 -- 2024/01/14')
@@ -58,14 +57,14 @@ describe('search hotels', () => {
 
     describe('editing', () => {
       it('user should be able to edit searching destination - I am indeed planning a travel to Hangzhou', async () => {
-        render(<HotelSearch />)
+        renderComponent(<HotelSearch />)
         await getDestinationField().select('杭州')
 
         expect(getDestinationField().getValue()).toBe('杭州')
       })
 
       it('user should be able to increase no. of occupancies', async () => {
-        render(<HotelSearch />)
+        renderComponent(<HotelSearch />)
 
         await getOccupancyField().clickToIncrement()
         expect(getOccupancyField().getValue()).toBe(2)
@@ -75,7 +74,7 @@ describe('search hotels', () => {
       })
 
       it('user should be able to decrease no. of occupancies', async () => {
-        render(<HotelSearch />)
+        renderComponent(<HotelSearch />)
 
         await getOccupancyField().clickToIncrement()
         expect(getOccupancyField().getValue()).toBe(2)
@@ -85,7 +84,7 @@ describe('search hotels', () => {
       })
 
       it('user should be able to extend reservation time and see how many days of money they need to pay', async () => {
-        render(<HotelSearch />)
+        renderComponent(<HotelSearch />)
 
         await getCheckinPeriodField().selectStartDate('2024-01-14')
         await getCheckinPeriodField().selectEndDate('2024-01-19')

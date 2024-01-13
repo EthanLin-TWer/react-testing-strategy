@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material'
-import { addDays } from 'date-fns'
+import { addDays, format } from 'date-fns'
 
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
 import { DateRangePicker } from '../../ui-components/DatePicker/DateRangePicker'
-import { useRecommendationCities } from '../../hooks/api/hotels'
+import { useRecommendationCities, useSearchHotels } from '../../hooks/api/useHotels'
 
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
@@ -31,6 +31,13 @@ export const HotelSearchComponent = () => {
 
   const [noOfOccupancies, setNoOfOccupancies] = useState<number>(1)
 
+  const { hotels, triggerSearchHotel } = useSearchHotels({
+    city: city.id,
+    checkinDate: format(checkinDate, 'yyyy-MM-dd'),
+    checkoutDate: format(checkoutDate, 'yyyy-MM-dd'),
+    noOfOccupancies,
+  })
+
   return (
     <div>
       <SearchDropdown
@@ -51,7 +58,8 @@ export const HotelSearchComponent = () => {
       />
 
       <Counter label="入住人数" min={1} defaultValue={1} onChange={setNoOfOccupancies} testId="occupancy" />
-      <Button variant="contained" data-testid="search">
+
+      <Button variant="contained" onClick={triggerSearchHotel} data-testid="search">
         Search
       </Button>
     </div>
