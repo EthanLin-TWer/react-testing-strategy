@@ -1,9 +1,9 @@
-import { http, HttpResponse } from 'msw'
+import { delay, http, HttpResponse } from 'msw'
 import { allHotels } from './responses/all-lots'
 import { HotelResponse } from '../api-client/hotels/response.types'
 
 export const handlers = [
-  http.get('/hotels', ({ request }) => {
+  http.get('/hotels', async ({ request }) => {
     const { searchParams } = new URL(request.url)
 
     const page = Number(searchParams.get('page')) || 1
@@ -12,11 +12,9 @@ export const handlers = [
     const checkoutDate = searchParams.get('checkoutDate')
     const noOfOccupancies = Number(searchParams.get('noOfOccupancies'))
 
-    const data = allHotels
-      .filter((hotel: HotelResponse) => {
-        return true
-      })
-      .slice(15 * (page - 1), 15 * page)
+    const data = allHotels.filter((hotel: HotelResponse) => true).slice(15 * (page - 1), 15 * page)
+
+    await delay(1.5 * 1000)
 
     return HttpResponse.json({
       data,
