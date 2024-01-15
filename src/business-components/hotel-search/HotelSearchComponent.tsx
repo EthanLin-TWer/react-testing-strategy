@@ -5,7 +5,7 @@ import { addDays, format } from 'date-fns'
 
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
-import { DateRangePicker } from '../../ui-components/DatePicker/DateRangePicker'
+import { DateRangePicker } from '../../ui-components/DateRangePicker/DateRangePicker'
 import { useRecommendationCities, useSearchHotels } from '../../hooks/api/useHotels'
 
 export const HotelSearchComponent = () => {
