@@ -12,14 +12,27 @@ export interface RoomType {
   price: number
 }
 
+export interface Position {
+  cityId: number
+  area: string
+  poi: string
+  lat: string
+  lng: string
+  address: string
+  cityName: string
+}
+
 export interface HotelResponse {
   id: string
+  name: string
   leastAvailablePrice: number
   roomTypes?: RoomType[]
   userRating: number
   noOfUserRatings: number
   starRating: StarRating
   imgSrc: string
+  tags: string[]
+  position: Position
 }
 
 export interface PagedResult<T> {
