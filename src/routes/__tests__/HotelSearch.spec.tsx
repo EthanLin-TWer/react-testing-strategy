@@ -10,20 +10,6 @@ import { SearchDropdownTester } from './component-testers/search-dropdown.tester
 
 describe('search hotels', () => {
   describe('search entry - home page', () => {
-    beforeEach(() => {
-      // // given ①
-      // searchPageDSL.mockRecommendationCities([
-      //   { id: 'BJ', name: '北京', }, { id: 'SH', name: '上海', },
-      //   { id: 'GZ', name: '广州', }, { id: 'SZ', name: '深圳', },
-      //   { id: 'CD', name: '成都', }, { id: 'CQ', name: '重庆', },
-      //   { id: 'HZ', name: '杭州', }, { id: 'WH', name: '武汉', },
-      // ])
-    })
-
-    afterEach(() => {
-      // searchPageDSL.reset()
-    })
-
     it('should render a search box that supports searching available hotels by destination, check-in period and number of occupancy', async () => {
       renderRouteComponent(<HotelSearch />) // SearchPage fetches data on its own
       const destinationField: SearchDropdownTester = getDestinationField()
