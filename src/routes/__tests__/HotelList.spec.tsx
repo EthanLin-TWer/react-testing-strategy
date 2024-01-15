@@ -2,17 +2,18 @@ import axios from 'axios'
 import { waitFor } from '@testing-library/dom'
 import { renderHotelList } from '../../../test-setup/render'
 
-import { allHotels } from '../../mocks/responses/hotel.mock'
+import { hotelMocks } from '../../mocks/responses/hotel.mock'
 import { HotelList } from '../HotelList'
 import { getHotelList } from './business-testers/hotel-list.tester'
 import { HotelListPageDSL } from './api-mocks/hotel-list.dsl'
+import { exampleTwoHotels, createHotel } from './fixtures/hotel.fixtures'
 
 describe('hotels list', () => {
   let hotelListPageDSL: HotelListPageDSL
   describe('search result', () => {
     beforeEach(() => {
       hotelListPageDSL = new HotelListPageDSL()
-      hotelListPageDSL.mockGetHotelListOnce(allHotels.slice(0, 2))
+      hotelListPageDSL.mockGetHotelListOnce(exampleTwoHotels)
     })
 
     afterEach(() => {
@@ -26,7 +27,12 @@ describe('hotels list', () => {
       )
 
       expect(axios.get).toHaveBeenCalledWith('/hotels', {
-        params: { checkinDate: '2024-01-20', checkoutDate: '2024-01-28', city: 'HZ', noOfOccupancies: 2 },
+        params: {
+          checkinDate: '2024-01-20',
+          checkoutDate: '2024-01-28',
+          city: 'HZ',
+          noOfOccupancies: 2,
+        },
       })
     })
 
@@ -43,7 +49,9 @@ describe('hotels list', () => {
     })
 
     it('should show "≤100 comments" when no. of user ratings are less than 100', async () => {
-      hotelListPageDSL.mockGetHotelListOnce([allHotels[10]])
+      hotelListPageDSL.mockGetHotelListOnce([
+        createHotel(hotelMocks[9], { name: '杭州华辰国际饭店', noOfUserRatings: 96 }),
+      ])
 
       renderHotelList(
         <HotelList />,
@@ -52,13 +60,15 @@ describe('hotels list', () => {
 
       await waitFor(() => {
         expect(getHotelList()).toEqual([
-          ['杭州西湖柒号酒店式公寓', '西湖湖滨商圈', '3星级', '用户评分：4.4', '≤100条点评', '￥249起'],
+          ['杭州华辰国际饭店', '西湖湖滨商圈', '4星级', '用户评分：4.5', '≤100条点评', '￥357起'],
         ])
       })
     })
 
     it('should add thousand separator to user ratings (e.g. 10,000条评论)', async () => {
-      hotelListPageDSL.mockGetHotelListOnce([allHotels[4]])
+      hotelListPageDSL.mockGetHotelListOnce([
+        createHotel(hotelMocks[4], { name: '杭州马可波罗滨湖酒店', noOfUserRatings: 10000 }),
+      ])
 
       renderHotelList(
         <HotelList />,
@@ -67,7 +77,7 @@ describe('hotels list', () => {
 
       await waitFor(() => {
         expect(getHotelList()).toEqual([
-          ['杭州马可波罗滨湖酒店(西湖湖滨店)', '西湖湖滨商圈', '4星级', '用户评分：4.7', '10,288条点评', '￥273起'],
+          ['杭州马可波罗滨湖酒店', '西湖湖滨商圈', '4星级', '用户评分：4.7', '10,000条点评', '￥273起'],
         ])
       })
     })

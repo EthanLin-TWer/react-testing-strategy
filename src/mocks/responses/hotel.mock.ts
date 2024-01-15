@@ -1,6 +1,6 @@
 import { HotelResponse } from '../../api-client/hotels/response.types'
 
-export const allHotels: HotelResponse[] = [
+export const hotelMocks: HotelResponse[] = [
   {
     id: '60149537',
     name: '杭州栖湖轻奢酒店',

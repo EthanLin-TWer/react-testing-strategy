@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import { allHotels } from './responses/hotel.mock'
+import { hotelMocks } from './responses/hotel.mock'
 import { HotelResponse } from '../api-client/hotels/response.types'
 
 export const handlers = [
@@ -12,14 +12,14 @@ export const handlers = [
     const checkoutDate = searchParams.get('checkoutDate')
     const noOfOccupancies = Number(searchParams.get('noOfOccupancies'))
 
-    const data = allHotels.filter((hotel: HotelResponse) => true).slice(15 * (page - 1), 15 * page)
+    const data = hotelMocks.filter((hotel: HotelResponse) => true).slice(15 * (page - 1), 15 * page)
 
     await delay(1.5 * 1000)
 
     return HttpResponse.json({
       data,
-      totalPages: Math.ceil(allHotels.length / 15),
-      totalCounts: allHotels.length,
+      totalPages: Math.ceil(hotelMocks.length / 15),
+      totalCounts: hotelMocks.length,
     })
   }),
 ]
