@@ -8,7 +8,7 @@ import { HeaderComponent } from '../business-components/shared/header/HeaderComp
 
 export const Header = () => (
   <>
-    <HeaderComponent />
+    {/* <HeaderComponent />*/}
     <Outlet />
   </>
 )
