@@ -5,17 +5,18 @@ import { renderHotelList } from '../../../test-setup/render'
 import { allHotels } from '../../mocks/responses/hotel.mock'
 import { HotelList } from '../HotelList'
 import { getHotelList } from './business-testers/hotel-list.tester'
+import { HotelListPageDSL } from './api-mocks/hotel-list.dsl'
 
 describe('hotels list', () => {
+  let hotelListPageDSL: HotelListPageDSL
   describe('search result', () => {
     beforeEach(() => {
-      axios.get = jest.fn().mockImplementationOnce(async () => ({
-        data: { data: allHotels.slice(0, 2), totalPages: 1, totalCounts: 2 },
-      }))
+      hotelListPageDSL = new HotelListPageDSL()
+      hotelListPageDSL.mockGetHotelListOnce(allHotels.slice(0, 2))
     })
 
     afterEach(() => {
-      jest.clearAllMocks()
+      hotelListPageDSL.reset()
     })
 
     it('should call search endpoint with correct parameters: city id, check dates in yyyy-MM-dd, and no. of occupancies', () => {
@@ -42,9 +43,7 @@ describe('hotels list', () => {
     })
 
     it('should show "≤100 comments" when no. of user ratings are less than 100', async () => {
-      axios.get = jest.fn().mockImplementationOnce(async () => ({
-        data: { data: [allHotels[10]], totalPages: 1, totalCounts: 1 },
-      }))
+      hotelListPageDSL.mockGetHotelListOnce([allHotels[10]])
 
       renderHotelList(
         <HotelList />,
@@ -59,9 +58,7 @@ describe('hotels list', () => {
     })
 
     it('should add thousand separator to user ratings (e.g. 10,000条评论)', async () => {
-      axios.get = jest.fn().mockImplementationOnce(async () => ({
-        data: { data: [allHotels[4]], totalPages: 1, totalCounts: 1 },
-      }))
+      hotelListPageDSL.mockGetHotelListOnce([allHotels[4]])
 
       renderHotelList(
         <HotelList />,
