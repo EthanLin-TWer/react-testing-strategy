@@ -13,7 +13,8 @@ export const HotelItem: FC<Props> = ({ hotel }) => {
       return `≤100条点评`
     }
 
-    return `${userRating}条点评`
+    const formatter = new Intl.NumberFormat('en-US')
+    return `${formatter.format(userRating)}条点评`
   }
 
   return (

@@ -27,7 +27,7 @@ export const allHotels: HotelResponse[] = [
     leastAvailablePrice: 498,
     roomTypes: [],
     userRating: 4.7,
-    noOfUserRatings: 3178,
+    noOfUserRatings: 317,
     starRating: 5,
     imgSrc: 'https://dimg04.c-ctrip.com/images/1mc4312000aze26sl0B58_R_300_225_R5_Q70_D.jpg',
     tags: [

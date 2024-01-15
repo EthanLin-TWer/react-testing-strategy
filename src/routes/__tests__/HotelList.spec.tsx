@@ -37,7 +37,7 @@ describe.only('hotels list', () => {
 
       expect(getHotelList()).toEqual([
         ['杭州栖湖轻奢酒店', '西湖湖滨商圈', '4星级', '用户评分：4.2', '930条点评', '￥198起'],
-        ['杭州中山西子湖酒店', '西湖湖滨商圈', '5星级', '用户评分：4.7', '3178条点评', '￥498起'],
+        ['杭州中山西子湖酒店', '西湖湖滨商圈', '5星级', '用户评分：4.7', '317条点评', '￥498起'],
       ])
     })
 
@@ -54,6 +54,23 @@ describe.only('hotels list', () => {
       await waitFor(() => {
         expect(getHotelList()).toEqual([
           ['杭州西湖柒号酒店式公寓', '西湖湖滨商圈', '3星级', '用户评分：4.4', '≤100条点评', '￥249起'],
+        ])
+      })
+    })
+
+    it('should add thousand separator to user ratings (e.g. 10,000条评论)', async () => {
+      axios.get = jest.fn().mockImplementationOnce(async () => ({
+        data: { data: [allHotels[4]], totalPages: 1, totalCounts: 1 },
+      }))
+
+      renderHotelList(
+        <HotelList />,
+        '/hotels/list?city=HZ&checkinDate=2024-01-20&checkoutDate=2024-01-28&noOfOccupancies=2'
+      )
+
+      await waitFor(() => {
+        expect(getHotelList()).toEqual([
+          ['杭州马可波罗滨湖酒店(西湖湖滨店)', '西湖湖滨商圈', '4星级', '用户评分：4.7', '10,288条点评', '￥273起'],
         ])
       })
     })
