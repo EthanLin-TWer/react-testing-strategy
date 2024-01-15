@@ -1,9 +1,9 @@
-type StarRating = 1 | 2 | 3 | 4 | 5
+export type StarRating = 1 | 2 | 3 | 4 | 5
 enum Facility {
   WIFI = 'wifi',
 }
 
-interface RoomType {
+export interface RoomType {
   id: string
   classification: string
   facilities: Facility[]
@@ -26,4 +26,9 @@ export interface PagedResult<T> {
   totalPages: number
   totalCounts: number
   data: T
+}
+
+export interface CityResponse {
+  id: string
+  name: string
 }

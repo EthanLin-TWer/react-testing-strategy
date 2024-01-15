@@ -51,7 +51,7 @@ describe('search hotels', () => {
       renderRouteComponent(<HotelSearch />)
 
       expect(getDestinationField().getValue()).toBe('北京')
-      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/13 -- 1晚 -- 2024/01/14')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/15 -- 1晚 -- 2024/01/16')
       expect(getOccupancyField().getValue()).toBe(1)
     })
 
@@ -86,10 +86,10 @@ describe('search hotels', () => {
       it('user should be able to extend reservation time and see how many days of money they need to pay', async () => {
         renderRouteComponent(<HotelSearch />)
 
-        await getCheckinPeriodField().selectStartDate('2024-01-14')
-        await getCheckinPeriodField().selectEndDate('2024-01-19')
+        await getCheckinPeriodField().selectStartDate('2024-01-16')
+        await getCheckinPeriodField().selectEndDate('2024-01-21')
 
-        expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/14 -- 5晚 -- 2024/01/19')
+        expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/16 -- 5晚 -- 2024/01/21')
       })
     })
 

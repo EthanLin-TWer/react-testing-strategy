@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
 
-export const onMount = (functionToExecute: () => void) => {
+export const useOnMount = (functionToExecute: () => void) => {
   useEffect(functionToExecute, [])
 }

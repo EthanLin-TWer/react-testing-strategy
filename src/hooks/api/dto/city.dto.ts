@@ -1,4 +1,4 @@
-import { CityResponse } from '../response/hotels.response'
+import { CityResponse } from '../../../api-client/hotels/response.types'
 
 export interface CityDTO {
   id: string

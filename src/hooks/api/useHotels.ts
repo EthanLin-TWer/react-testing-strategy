@@ -4,6 +4,7 @@ import { getHotels } from '../../api-client/hotels/hotels'
 import { SearchCriteria } from '../../api-client/hotels/request.types'
 import { HotelResponse } from '../../api-client/hotels/response.types'
 import { CitiesDTO, toCitiesDTO } from './dto/city.dto'
+import { toHotelDto } from './dto/hotel.dto'
 
 export const useSearchHotels = (criteria: SearchCriteria) => {
   const query = useQuery<HotelResponse>({
@@ -14,7 +15,8 @@ export const useSearchHotels = (criteria: SearchCriteria) => {
   const { data = [], isLoading, refetch } = query
 
   return {
-    hotels: data,
+    hotels: data.data?.map(toHotelDto) || [],
+    isLoading,
     triggerSearchHotel: refetch,
   }
 }
