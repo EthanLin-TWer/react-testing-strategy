@@ -5,11 +5,13 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { configureAppStore } from '../src/redux'
-import { queryClient } from '../src/hooks/api/query-client'
+import { configureQueryClient } from '../src/hooks/api/query-client'
 import { Header } from '../src/routes/Header'
 
+const queryClient = configureQueryClient({ staleTime: 0 })
 const registerUnderPath = (path: string) => {
   return function Wrapper<T = unknown>({ children }: PropsWithChildren<T>) {
+    const store = configureAppStore()
     return (
       <ReduxProvider store={configureAppStore()}>
         <QueryClientProvider client={queryClient}>
