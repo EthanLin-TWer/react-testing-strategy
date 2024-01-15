@@ -10,14 +10,12 @@ export const useSearchHotels = (criteria: SearchCriteria) => {
   const query = useQuery<HotelResponse>({
     queryKey: ['hotels'],
     queryFn: () => getHotels(criteria),
-    enabled: false,
   })
-  const { data = [], isLoading, refetch } = query
+  const { data, isLoading } = query
 
   return {
-    hotels: data.data?.map(toHotelDto) || [],
+    hotels: data?.data?.map(toHotelDto) || [],
     isLoading,
-    triggerSearchHotel: refetch,
   }
 }
 

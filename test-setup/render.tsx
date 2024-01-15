@@ -30,3 +30,8 @@ const registerUnderPath = (path: string) => {
 export const renderRouteComponent = (componentUnderTest: ReactElement, path = '') => {
   render(componentUnderTest, { wrapper: registerUnderPath(path) })
 }
+
+export const renderHotelList = (componentUnderTest: ReactElement, urlPath: string) => {
+  window.history.pushState({}, 'initialize search', urlPath)
+  render(componentUnderTest, { wrapper: registerUnderPath('/hotels/list') })
+}

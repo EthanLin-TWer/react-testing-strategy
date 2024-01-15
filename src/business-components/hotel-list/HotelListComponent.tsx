@@ -12,15 +12,11 @@ export const HotelListComponent: FC = () => {
   const checkoutDate = params.get('checkoutDate')!
   const noOfOccupancies = params.get('noOfOccupancies')!
 
-  const { hotels, isLoading, triggerSearchHotel } = useSearchHotels({
+  const { hotels, isLoading } = useSearchHotels({
     city,
     checkinDate,
     checkoutDate,
     noOfOccupancies: Number(noOfOccupancies),
-  })
-
-  useOnMount(() => {
-    triggerSearchHotel()
   })
 
   if (isLoading) {

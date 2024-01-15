@@ -10,6 +10,7 @@ export const getDestinationField = (): SearchDropdownTester => {
 export const getCheckinPeriodField = (): DateRangePickerTester => {
   return findDateRangePicker('checkin-period')
 }
+
 export const getOccupancyField = (): CounterTester => {
   return findCounter('occupancy')
 }

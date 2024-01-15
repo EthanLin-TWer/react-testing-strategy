@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import { allHotels } from './responses/hotel.fixtures'
+import { allHotels } from './responses/hotel.mock'
 import { HotelResponse } from '../api-client/hotels/response.types'
 
 export const handlers = [
