@@ -6,7 +6,7 @@ import { allHotels } from '../../mocks/responses/hotel.mock'
 import { HotelList } from '../HotelList'
 import { getHotelList } from './business-testers/hotel-list.tester'
 
-describe.only('hotels list', () => {
+describe('hotels list', () => {
   describe('search result', () => {
     beforeEach(() => {
       axios.get = jest.fn().mockImplementationOnce(async () => ({
