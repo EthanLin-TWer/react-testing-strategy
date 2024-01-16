@@ -32,11 +32,11 @@ describe('search hotels - entry', () => {
     expect(getSearchButton().getValue()).toBe('Search')
   })
 
-  it('searching fields should have default values so we give user an example, allowing them to navigate to the search result page asap', async () => {
+  it('searching fields should have default values (so we give user an example, allowing them to navigate to the search result page asap)', async () => {
     renderRouteComponent(<HotelSearch />)
 
     expect(getDestinationField().getValue()).toBe('北京')
-    expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/15 -- 1晚 -- 2024/01/16')
+    expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/16 -- 1晚 -- 2024/01/17')
     expect(getOccupancyField().getValue()).toBe(1)
   })
 
@@ -71,10 +71,10 @@ describe('search hotels - entry', () => {
     it('user should be able to extend reservation time and see how many days of money they need to pay', async () => {
       renderRouteComponent(<HotelSearch />)
 
-      await getCheckinPeriodField().selectStartDate('2024-01-16')
-      await getCheckinPeriodField().selectEndDate('2024-01-21')
+      await getCheckinPeriodField().selectStartDate('2024-01-18')
+      await getCheckinPeriodField().selectEndDate('2024-01-23')
 
-      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/16 -- 5晚 -- 2024/01/21')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/18 -- 5晚 -- 2024/01/23')
     })
   })
 
