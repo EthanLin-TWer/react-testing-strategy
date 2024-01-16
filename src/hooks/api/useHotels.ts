@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getHotels } from '../../api-client/hotels/hotels'
 import { SearchCriteria } from '../../api-client/hotels/request.types'
-import { HotelResponse } from '../../api-client/hotels/response.types'
+import { CityResponse, HotelResponse } from '../../api-client/hotels/response.types'
 import { CitiesDTO, toCitiesDTO } from './dto/city.dto'
 import { toHotelDto } from './dto/hotel.dto'
 
@@ -20,7 +20,7 @@ export const useSearchHotels = (criteria: SearchCriteria) => {
 }
 
 export const useRecommendationCities = (): CitiesDTO => {
-  const hardcodedCityForNow = [
+  const hardcodedCityForNow: CityResponse[] = [
     { id: 'BJ', name: '北京' },
     { id: 'SH', name: '上海' },
     { id: 'GZ', name: '广州' },
