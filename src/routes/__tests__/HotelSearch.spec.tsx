@@ -78,7 +78,7 @@ describe('search hotels - entry', () => {
     })
   })
 
-  it('should call search endpoint with correct parameters: city id, check dates in yyyy-MM-dd, and no. of occupancies', async () => {
+  it('should navigate to hotel list page with searching criteria', async () => {
     renderRouteComponent(<HotelSearch />)
 
     await getDestinationField().select('杭州')
