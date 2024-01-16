@@ -13,10 +13,8 @@ export const useSearchHotels = (criteria: SearchCriteria) => {
   })
   const { data, isLoading } = query
 
-  return {
-    hotels: data?.data?.map(toHotelDto) || [],
-    isLoading,
-  }
+  const hotels = data?.data?.map(toHotelDto) || []
+  return { hotels, isLoading }
 }
 
 export const useRecommendationCities = (): CitiesDTO => {

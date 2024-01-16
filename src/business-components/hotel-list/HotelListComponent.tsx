@@ -1,22 +1,17 @@
 import { FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useOnMount } from '../../hooks/useOnMount'
 import { useSearchHotels } from '../../hooks/api/useHotels'
 import { HotelDTO } from '../../hooks/api/dto/hotel.dto'
 import { HotelItem } from './components/HotelItem'
 
 export const HotelListComponent: FC = () => {
   const [params] = useSearchParams()
-  const city = params.get('city')!
-  const checkinDate = params.get('checkinDate')!
-  const checkoutDate = params.get('checkoutDate')!
-  const noOfOccupancies = params.get('noOfOccupancies')!
 
   const { hotels, isLoading } = useSearchHotels({
-    city,
-    checkinDate,
-    checkoutDate,
-    noOfOccupancies: Number(noOfOccupancies),
+    city: params.get('city')!,
+    checkinDate: params.get('checkinDate')!,
+    checkoutDate: params.get('checkoutDate')!,
+    noOfOccupancies: Number(params.get('noOfOccupancies')!),
   })
 
   if (isLoading) {

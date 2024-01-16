@@ -10,6 +10,7 @@ import { exampleTwoHotels, createHotel } from './fixtures/hotel.fixtures'
 
 describe('hotels list', () => {
   let hotelListPageDSL: HotelListPageDSL
+
   describe('search result', () => {
     beforeEach(() => {
       hotelListPageDSL = new HotelListPageDSL()
@@ -36,17 +37,21 @@ describe('hotels list', () => {
       })
     })
 
-    it('should render available hotels once loaded with information: 酒店名、地址、星级、用户评分、点评数、报价等', () => {
-      renderHotelList(
-        <HotelList />,
-        '/hotels/list?city=HZ&checkinDate=2024-01-20&checkoutDate=2024-01-28&noOfOccupancies=2'
-      )
+    it(
+      'should render available hotels once loaded with correct information:' +
+        'hotel name, address, stars, user rating, number of user ratings and lowest price',
+      () => {
+        renderHotelList(
+          <HotelList />,
+          '/hotels/list?city=HZ&checkinDate=2024-01-20&checkoutDate=2024-01-28&noOfOccupancies=2'
+        )
 
-      expect(getHotelList()).toEqual([
-        ['杭州栖湖轻奢酒店', '西湖湖滨商圈', '4星级', '用户评分：4.2', '930条点评', '￥198起'],
-        ['杭州中山西子湖酒店', '西湖湖滨商圈', '5星级', '用户评分：4.7', '317条点评', '￥498起'],
-      ])
-    })
+        expect(getHotelList()).toEqual([
+          ['杭州栖湖轻奢酒店', '西湖湖滨商圈', '4星级', '用户评分：4.2', '930条点评', '￥198起'],
+          ['杭州中山西子湖酒店', '西湖湖滨商圈', '5星级', '用户评分：4.7', '317条点评', '￥498起'],
+        ])
+      }
+    )
 
     it('should show "≤100 comments" when no. of user ratings are less than 100', async () => {
       hotelListPageDSL.mockGetHotelListOnce([

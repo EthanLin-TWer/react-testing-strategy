@@ -25,7 +25,5 @@ export const getHotelList = () => {
   return screen
     .getAllByTestId('hotel-item')
     .map(HotelTester)
-    .map((tester) => {
-      return tester.getDetails()
-    })
+    .map((tester) => tester.getDetails())
 }
