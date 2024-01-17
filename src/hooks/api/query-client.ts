@@ -1,7 +1,7 @@
 // @ts-ignore
 import { QueryClient, QueryOptions } from '@tanstack/react-query'
 
-export const configureQueryClient = (queryOptions: QueryOptions = {}) => {
+export const configureQueryClient = (queryOptions?: QueryOptions) => {
   return new QueryClient({
     defaultOptions: {
       query: {

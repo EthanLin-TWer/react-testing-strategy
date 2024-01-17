@@ -7,7 +7,16 @@
   "transformIgnorePatterns": ["node_modules", "dist"],
   "preset": "ts-jest",
   "testEnvironment": "jsdom",
-  "collectCoverageFrom": ["src/**/*.{ts,tsx}", "!src/types/*.{ts,tsx}", "!src/images/*.{ts,tsx}", "!src/index.tsx"],
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/images/*.{ts,tsx}",
+    "!src/mocks/*.{ts,tsx}",
+    "!src/types/*.{ts,tsx}",
+    "!src/redux/*.{ts,tsx}",
+    "!src/hooks/redux/*.{ts,tsx}",
+    "!src/app-routes.tsx",
+    "!src/index.tsx"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 0,
