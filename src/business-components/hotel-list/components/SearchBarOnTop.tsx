@@ -15,11 +15,12 @@ interface Props {
 }
 
 const Container = styled('div')`
-  border-bottom: 1px solid #555;
+  //border-bottom: 1px solid #555;
   position: sticky;
   z-index: 500;
   top: 0;
   background-color: white;
+  box-shadow: 0 8px 20px 0 rgba(97, 121, 157, 0.16);
 `
 
 const RowContainer = styled('div')`
@@ -33,16 +34,31 @@ const RowContainer = styled('div')`
   padding: 20px 5px 10px;
   margin-bottom: 10px;
 
-  > div {
+  > div:nth-of-type(1) {
+    width: 20%;
+  }
+
+  > div:nth-of-type(2) {
     width: 50%;
+  }
+
+  > div:nth-of-type(3) {
+    width: 20%;
+  }
+
+  > div:nth-of-type(4) {
+    width: 10%;
   }
 `
 
 const StyledButton = styled(Button)`
-  width: 100%;
   height: 61px;
   margin-left: 30px;
-  border-radius: 8px;
+  border-radius: 0;
+`
+
+const DirtyPaddingTop = styled('div')`
+  margin-top: 10px;
 `
 
 export const SearchBarOnTop: FC<Props> = ({ city, checkinDate, checkoutDate, noOfOccupancies }) => {
@@ -65,13 +81,13 @@ export const SearchBarOnTop: FC<Props> = ({ city, checkinDate, checkoutDate, noO
           defaultEndDate={new Date(checkoutDate)}
           testId="checkin-period"
         />
-      </RowContainer>
 
-      <RowContainer>
-        <Counter label="入住人数" min={1} defaultValue={noOfOccupancies} testId="occupancy" />
+        <DirtyPaddingTop>
+          <Counter label="入住人数" min={1} defaultValue={noOfOccupancies} testId="occupancy" />
+        </DirtyPaddingTop>
 
-        <StyledButton variant="contained" endIcon={<TravelExploreIcon />} data-testid="search">
-          Search
+        <StyledButton variant="contained" data-testid="search">
+          <TravelExploreIcon />
         </StyledButton>
       </RowContainer>
     </Container>

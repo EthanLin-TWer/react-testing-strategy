@@ -7,6 +7,7 @@ interface Props {
 }
 
 const Container = styled('div')`
+  margin: 10px;
   padding: 30px;
 
   border: 1px solid transparent;

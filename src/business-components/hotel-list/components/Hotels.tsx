@@ -13,7 +13,7 @@ interface Props {
 const Container = styled('div')``
 
 const LoadingContainer = styled('div')`
-  height: 90vh;
+  height: 75vh;
 
   display: flex;
   justify-content: center;
