@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { DatePicker as MuiDatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
 import { differenceInCalendarDays } from 'date-fns'
+import { Typography } from '@mui/material'
+import { RowContainer } from '../../business-components/shared/styles'
+import { Container, DurationDisplay, StyledEndPicker, StyledStartPicker } from './styles'
 
 interface DateRangePickerProps {
   startLabel: string
@@ -35,8 +38,8 @@ export const DateRangePicker = ({
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div data-testid={testId}>
-        <MuiDatePicker
+      <Container data-testid={testId}>
+        <StyledStartPicker
           label={startLabel}
           value={startDate}
           disablePast
@@ -44,8 +47,10 @@ export const DateRangePicker = ({
           onChange={onStartDateChange}
           data-testid={`${testId}-start`}
         />
-        <span data-testid={`${testId}-duration`}>-- {differenceInNights}晚 --</span>
-        <MuiDatePicker
+        <DurationDisplay data-testid={`${testId}-duration`} variant="body1">
+          {differenceInNights}晚
+        </DurationDisplay>
+        <StyledEndPicker
           label={endLabel}
           value={endDate}
           minDate={startDate}
@@ -53,7 +58,7 @@ export const DateRangePicker = ({
           onChange={onEndDateChange}
           data-testid={`${testId}-end`}
         />
-      </div>
+      </Container>
     </LocalizationProvider>
   )
 }

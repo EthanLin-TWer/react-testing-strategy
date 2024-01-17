@@ -36,7 +36,7 @@ describe('search hotels - entry', () => {
     renderRouteComponent(<HotelSearch />)
 
     expect(getDestinationField().getValue()).toBe('北京')
-    expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/16 -- 1晚 -- 2024/01/17')
+    expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/17 1晚 2024/01/18')
     expect(getOccupancyField().getValue()).toBe(1)
   })
 
@@ -74,7 +74,7 @@ describe('search hotels - entry', () => {
       await getCheckinPeriodField().selectStartDate('2024-01-18')
       await getCheckinPeriodField().selectEndDate('2024-01-23')
 
-      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/18 -- 5晚 -- 2024/01/23')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/18 5晚 2024/01/23')
     })
   })
 

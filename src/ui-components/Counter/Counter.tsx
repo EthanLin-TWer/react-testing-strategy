@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { InputAdornment, TextField } from '@mui/material'
+import { InputAdornment } from '@mui/material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'
+import { BorderlessCounter } from './styles'
 
 interface CounterProps {
   label: string
@@ -30,7 +31,7 @@ export const Counter = ({ testId, label, onChange, defaultValue = 0, min = 0, ma
   }, [value])
 
   return (
-    <TextField
+    <BorderlessCounter
       label={label}
       value={value}
       readOnly

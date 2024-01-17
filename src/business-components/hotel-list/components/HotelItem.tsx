@@ -1,10 +1,44 @@
 import { FC } from 'react'
 import { HotelDTO } from '../../../hooks/api/dto/hotel.dto'
-import { Typography } from '@mui/material'
+import { Rating, styled, Typography } from '@mui/material'
 
 interface Props {
   hotel: HotelDTO
 }
+
+const RowFlexStart = styled('div')`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`
+
+const RowContainer = styled(RowFlexStart)`
+  width: 80%;
+  padding: 15px;
+  margin: 25px auto;
+  border: 1px solid #d6ecff;
+`
+
+const HotelIntro = styled('div')`
+  margin-left: 20px;
+`
+
+const LeftContainer = styled('div')`
+  padding-right: 20px;
+  border-right: 1px solid #d6ecff;
+
+  width: 70%;
+`
+
+const RightContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 30%;
+
+  text-align: right;
+`
 
 export const HotelItem: FC<Props> = ({ hotel }) => {
   const formatUserRatingText = (userRating: number) => {
@@ -19,30 +53,44 @@ export const HotelItem: FC<Props> = ({ hotel }) => {
 
   return (
     <div data-testid="hotel-item">
-      <img src={hotel.imgSrc} alt="" width={150} />
-      <Typography variant="subtitle1" data-testid="hotel-name">
-        {hotel.name}
-      </Typography>
+      <RowContainer>
+        <LeftContainer>
+          <RowFlexStart>
+            <img src={hotel.imgSrc} alt="" width={250} />
 
-      <Typography variant="subtitle2" data-testid="hotel-position">
-        {hotel.position.area}
-      </Typography>
+            <HotelIntro>
+              <Typography variant="subtitle1" data-testid="hotel-name">
+                {hotel.name}
 
-      <Typography variant="subtitle2" data-testid="proposed-price">
-        ￥{hotel.leastAvailablePrice}起
-      </Typography>
+                <Rating value={hotel.starRating} readOnly size="small" data-testid="hotel-star" />
+              </Typography>
 
-      <Typography variant="body2" data-testid="hotel-star">
-        {hotel.starRating}星级
-      </Typography>
+              <Typography variant="subtitle2" data-testid="hotel-position">
+                {hotel.position.area}
+              </Typography>
+            </HotelIntro>
+          </RowFlexStart>
+        </LeftContainer>
 
-      <Typography variant="body2" data-testid="user-ratings">
-        用户评分：{hotel.userRating}
-      </Typography>
+        <RightContainer>
+          <Typography variant="body2" data-testid="proposed-price">
+            <Typography variant="h5" component="span" sx={{ color: '#287dfa' }}>
+              ￥{hotel.leastAvailablePrice}
+            </Typography>{' '}
+            起
+          </Typography>
 
-      <Typography variant="body2" data-testid="no-of-user-ratings">
-        {formatUserRatingText(hotel.noOfUserRatings)}
-      </Typography>
+          <div>
+            <Typography variant="body2" data-testid="user-ratings">
+              用户评分：{hotel.userRating}
+            </Typography>
+
+            <Typography variant="body2" component="span" data-testid="no-of-user-ratings">
+              {formatUserRatingText(hotel.noOfUserRatings)}
+            </Typography>
+          </div>
+        </RightContainer>
+      </RowContainer>
     </div>
   )
 }

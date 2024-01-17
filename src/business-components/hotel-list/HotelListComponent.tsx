@@ -1,29 +1,34 @@
 import { FC } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useSearchHotels } from '../../hooks/api/useHotels'
-import { HotelDTO } from '../../hooks/api/dto/hotel.dto'
-import { HotelItem } from './components/HotelItem'
+import { useRecommendationCities, useSearchHotels } from '../../hooks/api/useHotels'
+import { SearchBarOnTop } from './components/SearchBarOnTop'
+import { Hotels } from './components/Hotels'
 
 export const HotelListComponent: FC = () => {
   const [params] = useSearchParams()
 
+  const city = params.get('city')!
+  const checkinDate = params.get('checkinDate')!
+  const checkoutDate = params.get('checkoutDate')!
+  const noOfOccupancies = Number(params.get('noOfOccupancies')!)
+  const recommendationCities = useRecommendationCities()
   const { hotels, isLoading } = useSearchHotels({
-    city: params.get('city')!,
-    checkinDate: params.get('checkinDate')!,
-    checkoutDate: params.get('checkoutDate')!,
-    noOfOccupancies: Number(params.get('noOfOccupancies')!),
+    city,
+    checkinDate,
+    checkoutDate,
+    noOfOccupancies,
   })
 
-  if (isLoading) {
-    return <p>is loading....</p>
-  }
-
   return (
-    <div>
-      <h3>Hotel List</h3>
-      {hotels.map((hotel: HotelDTO) => (
-        <HotelItem key={hotel.id} hotel={hotel} />
-      ))}
-    </div>
+    <>
+      <SearchBarOnTop
+        city={recommendationCities.findById(city)!.name}
+        checkoutDate={checkoutDate}
+        checkinDate={checkinDate}
+        noOfOccupancies={noOfOccupancies}
+      />
+
+      <Hotels hotels={hotels} isLoading={isLoading} />
+    </>
   )
 }

@@ -1,11 +1,12 @@
 import React from 'react'
 import { createRoot, type Root } from 'react-dom/client'
-// redux dependencies
-import { Provider as ReduxProvider } from 'react-redux'
-import { configureAppStore } from './redux'
 
 import { Envs } from './constants/envs'
 import { AppRoutes } from './app-routes'
+
+// redux dependencies
+import { Provider as ReduxProvider } from 'react-redux'
+import { configureAppStore } from './redux'
 
 // react query dependencies
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -22,6 +23,7 @@ const enablingMocking = async (): Promise<unknown> => {
 
 const store = configureAppStore()
 const queryClient = configureQueryClient()
+
 const root: Root = createRoot(document.getElementById('root') as HTMLElement)
 enablingMocking().then(() => {
   root.render(

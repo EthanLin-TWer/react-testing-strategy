@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
 import { addDays, format } from 'date-fns'
 
 import { SearchDropdown } from '../../ui-components/SearchDropdown/SearchDropdown'
 import { Counter } from '../../ui-components/Counter/Counter'
 import { DateRangePicker } from '../../ui-components/DateRangePicker/DateRangePicker'
-import { useRecommendationCities, useSearchHotels } from '../../hooks/api/useHotels'
+import { useRecommendationCities } from '../../hooks/api/useHotels'
+import { FlexRowContainer, RowContainer, SecondRowContainer } from '../shared/styles'
+import { SearchContainer } from './components/SearchContainer'
+import { StyledButton } from './styles'
 
 export const HotelSearchComponent = () => {
   const recommendationCities = useRecommendationCities()
@@ -43,29 +46,35 @@ export const HotelSearchComponent = () => {
   }
 
   return (
-    <div>
-      <SearchDropdown
-        label="目的地/酒店名称"
-        options={recommendationCities.getNames()}
-        defaultValue={defaultedAsChinaCapital.name}
-        onChange={onDestinationChanged}
-        testId="destination"
-      />
+    <SearchContainer label="预订酒店">
+      <RowContainer firstColumn={2} secondColumn={3}>
+        <SearchDropdown
+          label="目的地/酒店名称"
+          options={recommendationCities.getNames()}
+          defaultValue={defaultedAsChinaCapital.name}
+          onChange={onDestinationChanged}
+          testId="destination"
+        />
 
-      <DateRangePicker
-        startLabel="入住时间"
-        endLabel="退房时间"
-        defaultStartDate={defaultCheckinDay}
-        defaultEndDate={defaultCheckoutDay}
-        onChange={onCheckinPeriodChange}
-        testId="checkin-period"
-      />
+        <DateRangePicker
+          startLabel="入住时间"
+          endLabel="退房时间"
+          defaultStartDate={defaultCheckinDay}
+          defaultEndDate={defaultCheckoutDay}
+          onChange={onCheckinPeriodChange}
+          testId="checkin-period"
+        />
+      </RowContainer>
 
-      <Counter label="入住人数" min={1} defaultValue={1} onChange={setNoOfOccupancies} testId="occupancy" />
+      <FlexRowContainer>
+        <SecondRowContainer>
+          <Counter label="入住人数" min={1} defaultValue={1} onChange={setNoOfOccupancies} testId="occupancy" />
+        </SecondRowContainer>
 
-      <Button variant="contained" onClick={onSearch} data-testid="search">
-        Search
-      </Button>
-    </div>
+        <StyledButton variant="contained" onClick={onSearch} endIcon={<TravelExploreIcon />} data-testid="search">
+          Search
+        </StyledButton>
+      </FlexRowContainer>
+    </SearchContainer>
   )
 }
