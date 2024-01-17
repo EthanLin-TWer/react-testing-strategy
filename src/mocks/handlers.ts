@@ -14,7 +14,7 @@ export const handlers = [
 
     const data = hotelMocks.filter((hotel: HotelResponse) => true).slice(15 * (page - 1), 15 * page)
 
-    await delay(1.5 * 1000)
+    await delay(3 * 1000)
 
     return HttpResponse.json({
       data,
