@@ -20,7 +20,7 @@ export const findCounter = (testId: string): CounterTester => {
   const getLabel = () => parseText(findFirstChildren(getWrapperElement(), 'label')!)
   const getValue = () => {
     const value = parseValue(findFirstChildren(getInputElement(), 'input')!)
-    return value ? Number(value) : NaN
+    return Number(value)
   }
   const clickToIncrement = async () => {
     await userEvent.click(screen.getByTestId(`${testId}-increment`))

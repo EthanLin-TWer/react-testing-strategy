@@ -14,7 +14,9 @@ interface SearchDropdownProps {
 
 export const SearchDropdown = ({ testId, label, options, defaultValue, onChange, value }: SearchDropdownProps) => {
   const handleChange = (event: SyntheticEvent, value: string) => {
-    onChange?.(value)
+    if (onChange) {
+      onChange(value)
+    }
   }
 
   return (

@@ -14,6 +14,7 @@
     "!src/types/*.{ts,tsx}",
     "!src/redux/*.{ts,tsx}",
     "!src/hooks/redux/*.{ts,tsx}",
+    "!src/routes/__tests__/**/*.{ts,tsx}",
     "!src/app-routes.tsx",
     "!src/index.tsx"
   ],

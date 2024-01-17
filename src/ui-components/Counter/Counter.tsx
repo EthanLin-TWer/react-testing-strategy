@@ -8,17 +8,19 @@ interface CounterProps {
   label: string
   min?: number
   max?: number
-  defaultValue?: number
+  defaultValue: number
   onChange?: (value: number) => void
   testId?: string
 }
 
-export const Counter = ({ testId, label, onChange, defaultValue = 0, min = 0, max = Infinity }: CounterProps) => {
+export const Counter = ({ testId, label, onChange, defaultValue, min = 0, max = Infinity }: CounterProps) => {
   const [value, setValue] = useState<number>(defaultValue)
   const handleChange = useCallback((value: number) => {
     if (value >= min && value <= max) {
       setValue(value)
-      onChange?.(value)
+      if (onChange) {
+        onChange(value)
+      }
     }
   }, [])
 

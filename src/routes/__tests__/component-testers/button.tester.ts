@@ -8,26 +8,21 @@ export interface ButtonTester {
   click(): Promise<void>
 
   isPresent(): boolean
-  isEnabled(): boolean
 }
 
 export const findButton = (testId: string): ButtonTester => {
   // implementation details
   const getElement = () => screen.getByTestId(testId)
-  const isDisabled = () => getElement().getAttribute('disabled') !== null
 
   // public interfaces
   const getValue = () => parseText(getElement())
 
   const isPresent = () => screen.queryByTestId(testId) !== null
-  const isEnabled = () => !isDisabled()
   const click = async () => {
-    if (!isPresent()) {
-      return
+    if (isPresent()) {
+      await userEvent.click(getElement())
     }
-
-    await userEvent.click(getElement())
   }
 
-  return { isPresent, getValue, isEnabled, click }
+  return { isPresent, getValue, click }
 }

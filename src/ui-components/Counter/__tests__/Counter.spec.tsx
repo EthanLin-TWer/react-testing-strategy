@@ -30,6 +30,18 @@ describe('UI Components - Counter', () => {
       expect(counter.getValue()).toBe(2)
     })
 
+    it('should min default to 0 when not provided', async () => {
+      render(<Counter label="Hi" defaultValue={1} testId={testId} />)
+
+      const counter = findCounter(testId)
+
+      await counter.clickToDecrement()
+      expect(counter.getValue()).toBe(0)
+
+      await counter.clickToDecrement()
+      expect(counter.getValue()).toBe(0)
+    })
+
     it('should disable increment when current value is already the max value', () => {})
   })
 })

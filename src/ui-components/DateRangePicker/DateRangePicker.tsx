@@ -9,8 +9,8 @@ import { Container, DurationDisplay, StyledEndPicker, StyledStartPicker } from '
 interface DateRangePickerProps {
   startLabel: string
   endLabel: string
-  defaultStartDate?: Date
-  defaultEndDate?: Date
+  defaultStartDate: Date
+  defaultEndDate: Date
   onChange?: (startDate: Date, endDate: Date) => void
   testId?: string
 }
@@ -23,16 +23,19 @@ export const DateRangePicker = ({
   defaultStartDate,
   defaultEndDate,
 }: DateRangePickerProps) => {
-  const today = new Date()
-  const [startDate, setStartDate] = useState<Date>(defaultStartDate || today)
-  const [endDate, setEndDate] = useState<Date>(defaultEndDate || today)
+  const [startDate, setStartDate] = useState<Date>(defaultStartDate)
+  const [endDate, setEndDate] = useState<Date>(defaultEndDate)
   const onStartDateChange = (value: Date | null) => {
     setStartDate(value!)
-    onChange?.(value!, endDate)
+    if (onChange) {
+      onChange(value!, endDate)
+    }
   }
   const onEndDateChange = (value: Date | null) => {
     setEndDate(value!)
-    onChange?.(startDate, value!)
+    if (onChange) {
+      onChange(startDate, value!)
+    }
   }
   const differenceInNights = differenceInCalendarDays(endDate, startDate)
 

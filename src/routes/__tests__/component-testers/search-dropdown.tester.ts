@@ -8,9 +8,6 @@ export interface SearchDropdownTester {
   getValue(): string
   getOptions(): Promise<string[]>
 
-  isPresent(): boolean
-  isEnabled(): boolean
-
   select(value: string): Promise<void>
 }
 
@@ -35,13 +32,10 @@ export const findSearchDropdown = (testId: string): SearchDropdownTester => {
     return options
   }
 
-  const isPresent = () => true
-  const isEnabled = () => screen.getByTestId(`${testId}-input`).getAttribute('disabled') === null
-
   const select = async (value: string) => {
     await userEvent.click(getDropdownWrapperElement())
     await userEvent.click(screen.getByRole('option', { name: value }))
   }
 
-  return { getLabel, getValue, getOptions, isPresent, isEnabled, select }
+  return { getLabel, getValue, getOptions, select }
 }
