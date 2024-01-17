@@ -24,13 +24,13 @@ export const RowContainer = styled('div')(
     padding-right: 10px;
   }
   
-  > div:first-child {
+  > div:first-of-type {
     flex: ${firstColumn};
     border-left: 0;
     padding-left: 0;
   }
   
-  > div:last-child {
+  > div:last-of-type {
     flex: ${secondColumn};
     padding-right: 0;
   }
@@ -48,13 +48,13 @@ export const FlexRowContainer = styled('div')`
   justify-content: flex-start;
   align-items: center;
 
-  > div:first-child {
-    width: 60%;
+  > div:first-of-type {
+    width: 40%;
     padding-right: 10px;
   }
 
-  > div:last-child {
-    width: 20%;
+  > div:last-of-type {
+    width: 60%;
     padding-left: 10px;
   }
 `
