@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { configureAppStore } from '../src/redux'
 import { configureQueryClient } from '../src/hooks/api/query-client'
-import { Header } from '../src/routes/Header'
+import { Header } from '../src/app-routes'
 
 const queryClient = configureQueryClient({ staleTime: 0 })
 const registerUnderPath = (path: string) => {
