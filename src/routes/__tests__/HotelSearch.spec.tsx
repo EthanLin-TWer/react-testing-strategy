@@ -82,12 +82,12 @@ describe('search hotels - entry', () => {
     renderRouteComponent(<HotelSearch />)
 
     await getDestinationField().select('杭州')
-    await getCheckinPeriodField().selectStartDate('2024-01-20')
-    await getCheckinPeriodField().selectEndDate('2024-01-28')
+    await getCheckinPeriodField().selectStartDate('2024-01-29')
+    await getCheckinPeriodField().selectEndDate('2024-01-31')
     await getOccupancyField().clickToIncrement()
     await getSearchButton().click()
 
     expect(window.location.pathname).toBe('/hotels/list')
-    expect(window.location.search).toBe('?city=HZ&checkinDate=2024-01-20&checkoutDate=2024-01-28&noOfOccupancies=2')
+    expect(window.location.search).toBe('?city=HZ&checkinDate=2024-01-29&checkoutDate=2024-01-31&noOfOccupancies=2')
   })
 })
