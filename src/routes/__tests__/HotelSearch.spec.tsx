@@ -71,10 +71,10 @@ describe('search hotels - entry', () => {
     it('user should be able to extend reservation time and see how many days of money they need to pay', async () => {
       renderRouteComponent(<HotelSearch />)
 
-      await getCheckinPeriodField().selectStartDate('2024-01-29')
-      await getCheckinPeriodField().selectEndDate('2024-01-31')
+      await getCheckinPeriodField().selectStartDate('2024-03-29')
+      await getCheckinPeriodField().selectEndDate('2024-03-31')
 
-      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/01/29 2晚 2024/01/31')
+      expect(getCheckinPeriodField().getDisplayText()).toBe('2024/03/29 2晚 2024/03/31')
     })
   })
 
@@ -82,12 +82,12 @@ describe('search hotels - entry', () => {
     renderRouteComponent(<HotelSearch />)
 
     await getDestinationField().select('杭州')
-    await getCheckinPeriodField().selectStartDate('2024-01-29')
-    await getCheckinPeriodField().selectEndDate('2024-01-31')
+    await getCheckinPeriodField().selectStartDate('2024-03-29')
+    await getCheckinPeriodField().selectEndDate('2024-03-31')
     await getOccupancyField().clickToIncrement()
     await getSearchButton().click()
 
     expect(window.location.pathname).toBe('/hotels/list')
-    expect(window.location.search).toBe('?city=HZ&checkinDate=2024-01-29&checkoutDate=2024-01-31&noOfOccupancies=2')
+    expect(window.location.search).toBe('?city=HZ&checkinDate=2024-03-29&checkoutDate=2024-03-31&noOfOccupancies=2')
   })
 })
